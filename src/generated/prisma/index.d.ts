@@ -1342,23 +1342,23 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    posts: number
     comments: number
-    likes: number
-    followers: number
     following: number
-    notifications: number
+    followers: number
+    likes: number
     notificationsCreated: number
+    notifications: number
+    posts: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    posts?: boolean | UserCountOutputTypeCountPostsArgs
     comments?: boolean | UserCountOutputTypeCountCommentsArgs
-    likes?: boolean | UserCountOutputTypeCountLikesArgs
-    followers?: boolean | UserCountOutputTypeCountFollowersArgs
     following?: boolean | UserCountOutputTypeCountFollowingArgs
-    notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+    followers?: boolean | UserCountOutputTypeCountFollowersArgs
+    likes?: boolean | UserCountOutputTypeCountLikesArgs
     notificationsCreated?: boolean | UserCountOutputTypeCountNotificationsCreatedArgs
+    notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+    posts?: boolean | UserCountOutputTypeCountPostsArgs
   }
 
   // Custom InputTypes
@@ -1375,29 +1375,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PostWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
   export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommentWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LikeWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountFollowersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FollowsWhereInput
   }
 
   /**
@@ -1410,8 +1389,15 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: NotificationWhereInput
+  export type UserCountOutputTypeCountFollowersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FollowsWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LikeWhereInput
   }
 
   /**
@@ -1419,6 +1405,20 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountNotificationsCreatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: NotificationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostWhereInput
   }
 
 
@@ -1718,13 +1718,13 @@ export namespace Prisma {
     website?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    posts?: boolean | User$postsArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
-    likes?: boolean | User$likesArgs<ExtArgs>
-    followers?: boolean | User$followersArgs<ExtArgs>
     following?: boolean | User$followingArgs<ExtArgs>
-    notifications?: boolean | User$notificationsArgs<ExtArgs>
+    followers?: boolean | User$followersArgs<ExtArgs>
+    likes?: boolean | User$likesArgs<ExtArgs>
     notificationsCreated?: boolean | User$notificationsCreatedArgs<ExtArgs>
+    notifications?: boolean | User$notificationsArgs<ExtArgs>
+    posts?: boolean | User$postsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1772,13 +1772,13 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "clerkId" | "name" | "bio" | "image" | "location" | "website" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    posts?: boolean | User$postsArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
-    likes?: boolean | User$likesArgs<ExtArgs>
-    followers?: boolean | User$followersArgs<ExtArgs>
     following?: boolean | User$followingArgs<ExtArgs>
-    notifications?: boolean | User$notificationsArgs<ExtArgs>
+    followers?: boolean | User$followersArgs<ExtArgs>
+    likes?: boolean | User$likesArgs<ExtArgs>
     notificationsCreated?: boolean | User$notificationsCreatedArgs<ExtArgs>
+    notifications?: boolean | User$notificationsArgs<ExtArgs>
+    posts?: boolean | User$postsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1787,13 +1787,13 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      posts: Prisma.$PostPayload<ExtArgs>[]
       comments: Prisma.$CommentPayload<ExtArgs>[]
-      likes: Prisma.$LikePayload<ExtArgs>[]
-      followers: Prisma.$FollowsPayload<ExtArgs>[]
       following: Prisma.$FollowsPayload<ExtArgs>[]
-      notifications: Prisma.$NotificationPayload<ExtArgs>[]
+      followers: Prisma.$FollowsPayload<ExtArgs>[]
+      likes: Prisma.$LikePayload<ExtArgs>[]
       notificationsCreated: Prisma.$NotificationPayload<ExtArgs>[]
+      notifications: Prisma.$NotificationPayload<ExtArgs>[]
+      posts: Prisma.$PostPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2201,13 +2201,13 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    likes<T extends User$likesArgs<ExtArgs> = {}>(args?: Subset<T, User$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    followers<T extends User$followersArgs<ExtArgs> = {}>(args?: Subset<T, User$followersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     following<T extends User$followingArgs<ExtArgs> = {}>(args?: Subset<T, User$followingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    notifications<T extends User$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    followers<T extends User$followersArgs<ExtArgs> = {}>(args?: Subset<T, User$followersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    likes<T extends User$likesArgs<ExtArgs> = {}>(args?: Subset<T, User$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     notificationsCreated<T extends User$notificationsCreatedArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    notifications<T extends User$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2636,30 +2636,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.posts
-   */
-  export type User$postsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Post
-     */
-    select?: PostSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Post
-     */
-    omit?: PostOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostInclude<ExtArgs> | null
-    where?: PostWhereInput
-    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
-    cursor?: PostWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
-  }
-
-  /**
    * User.comments
    */
   export type User$commentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2681,54 +2657,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
-  }
-
-  /**
-   * User.likes
-   */
-  export type User$likesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Like
-     */
-    omit?: LikeOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LikeInclude<ExtArgs> | null
-    where?: LikeWhereInput
-    orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
-    cursor?: LikeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LikeScalarFieldEnum | LikeScalarFieldEnum[]
-  }
-
-  /**
-   * User.followers
-   */
-  export type User$followersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Follows
-     */
-    select?: FollowsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Follows
-     */
-    omit?: FollowsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FollowsInclude<ExtArgs> | null
-    where?: FollowsWhereInput
-    orderBy?: FollowsOrderByWithRelationInput | FollowsOrderByWithRelationInput[]
-    cursor?: FollowsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: FollowsScalarFieldEnum | FollowsScalarFieldEnum[]
   }
 
   /**
@@ -2756,27 +2684,51 @@ export namespace Prisma {
   }
 
   /**
-   * User.notifications
+   * User.followers
    */
-  export type User$notificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$followersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Notification
+     * Select specific fields to fetch from the Follows
      */
-    select?: NotificationSelect<ExtArgs> | null
+    select?: FollowsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Notification
+     * Omit specific fields from the Follows
      */
-    omit?: NotificationOmit<ExtArgs> | null
+    omit?: FollowsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: NotificationInclude<ExtArgs> | null
-    where?: NotificationWhereInput
-    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
-    cursor?: NotificationWhereUniqueInput
+    include?: FollowsInclude<ExtArgs> | null
+    where?: FollowsWhereInput
+    orderBy?: FollowsOrderByWithRelationInput | FollowsOrderByWithRelationInput[]
+    cursor?: FollowsWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+    distinct?: FollowsScalarFieldEnum | FollowsScalarFieldEnum[]
+  }
+
+  /**
+   * User.likes
+   */
+  export type User$likesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Like
+     */
+    select?: LikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Like
+     */
+    omit?: LikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikeInclude<ExtArgs> | null
+    where?: LikeWhereInput
+    orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
+    cursor?: LikeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LikeScalarFieldEnum | LikeScalarFieldEnum[]
   }
 
   /**
@@ -2801,6 +2753,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * User.notifications
+   */
+  export type User$notificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    where?: NotificationWhereInput
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    cursor?: NotificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * User.posts
+   */
+  export type User$postsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    where?: PostWhereInput
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    cursor?: PostWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
   }
 
   /**
@@ -2994,10 +2994,10 @@ export namespace Prisma {
     image?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    author?: boolean | UserDefaultArgs<ExtArgs>
     comments?: boolean | Post$commentsArgs<ExtArgs>
     likes?: boolean | Post$likesArgs<ExtArgs>
     notifications?: boolean | Post$notificationsArgs<ExtArgs>
+    author?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -3032,10 +3032,10 @@ export namespace Prisma {
 
   export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "content" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    author?: boolean | UserDefaultArgs<ExtArgs>
     comments?: boolean | Post$commentsArgs<ExtArgs>
     likes?: boolean | Post$likesArgs<ExtArgs>
     notifications?: boolean | Post$notificationsArgs<ExtArgs>
+    author?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3048,10 +3048,10 @@ export namespace Prisma {
   export type $PostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Post"
     objects: {
-      author: Prisma.$UserPayload<ExtArgs>
       comments: Prisma.$CommentPayload<ExtArgs>[]
       likes: Prisma.$LikePayload<ExtArgs>[]
       notifications: Prisma.$NotificationPayload<ExtArgs>[]
+      author: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3454,10 +3454,10 @@ export namespace Prisma {
    */
   export interface Prisma__PostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     comments<T extends Post$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Post$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     likes<T extends Post$likesArgs<ExtArgs> = {}>(args?: Subset<T, Post$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     notifications<T extends Post$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, Post$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5231,8 +5231,8 @@ export namespace Prisma {
     postId?: boolean
     userId?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["like"]>
 
   export type LikeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5240,8 +5240,8 @@ export namespace Prisma {
     postId?: boolean
     userId?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["like"]>
 
   export type LikeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5249,8 +5249,8 @@ export namespace Prisma {
     postId?: boolean
     userId?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["like"]>
 
   export type LikeSelectScalar = {
@@ -5262,23 +5262,23 @@ export namespace Prisma {
 
   export type LikeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "postId" | "userId" | "createdAt", ExtArgs["result"]["like"]>
   export type LikeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type LikeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type LikeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $LikePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Like"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       post: Prisma.$PostPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5679,8 +5679,8 @@ export namespace Prisma {
    */
   export interface Prisma__LikeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     post<T extends PostDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PostDefaultArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7356,10 +7356,10 @@ export namespace Prisma {
     postId?: boolean
     commentId?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    comment?: boolean | Notification$commentArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | Notification$postArgs<ExtArgs>
-    comment?: boolean | Notification$commentArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["notification"]>
 
   export type NotificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7371,10 +7371,10 @@ export namespace Prisma {
     postId?: boolean
     commentId?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    comment?: boolean | Notification$commentArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | Notification$postArgs<ExtArgs>
-    comment?: boolean | Notification$commentArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["notification"]>
 
   export type NotificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7386,10 +7386,10 @@ export namespace Prisma {
     postId?: boolean
     commentId?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    comment?: boolean | Notification$commentArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | Notification$postArgs<ExtArgs>
-    comment?: boolean | Notification$commentArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["notification"]>
 
   export type NotificationSelectScalar = {
@@ -7405,31 +7405,31 @@ export namespace Prisma {
 
   export type NotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "creatorId" | "type" | "read" | "postId" | "commentId" | "createdAt", ExtArgs["result"]["notification"]>
   export type NotificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    comment?: boolean | Notification$commentArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | Notification$postArgs<ExtArgs>
-    comment?: boolean | Notification$commentArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type NotificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    comment?: boolean | Notification$commentArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | Notification$postArgs<ExtArgs>
-    comment?: boolean | Notification$commentArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type NotificationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    comment?: boolean | Notification$commentArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | Notification$postArgs<ExtArgs>
-    comment?: boolean | Notification$commentArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $NotificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Notification"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
+      comment: Prisma.$CommentPayload<ExtArgs> | null
       creator: Prisma.$UserPayload<ExtArgs>
       post: Prisma.$PostPayload<ExtArgs> | null
-      comment: Prisma.$CommentPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7834,10 +7834,10 @@ export namespace Prisma {
    */
   export interface Prisma__NotificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    comment<T extends Notification$commentArgs<ExtArgs> = {}>(args?: Subset<T, Notification$commentArgs<ExtArgs>>): Prisma__CommentClient<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     post<T extends Notification$postArgs<ExtArgs> = {}>(args?: Subset<T, Notification$postArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    comment<T extends Notification$commentArgs<ExtArgs> = {}>(args?: Subset<T, Notification$commentArgs<ExtArgs>>): Prisma__CommentClient<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8271,25 +8271,6 @@ export namespace Prisma {
   }
 
   /**
-   * Notification.post
-   */
-  export type Notification$postArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Post
-     */
-    select?: PostSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Post
-     */
-    omit?: PostOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostInclude<ExtArgs> | null
-    where?: PostWhereInput
-  }
-
-  /**
    * Notification.comment
    */
   export type Notification$commentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8306,6 +8287,25 @@ export namespace Prisma {
      */
     include?: CommentInclude<ExtArgs> | null
     where?: CommentWhereInput
+  }
+
+  /**
+   * Notification.post
+   */
+  export type Notification$postArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post
+     */
+    omit?: PostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostInclude<ExtArgs> | null
+    where?: PostWhereInput
   }
 
   /**
@@ -8524,13 +8524,13 @@ export namespace Prisma {
     website?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    posts?: PostListRelationFilter
     comments?: CommentListRelationFilter
-    likes?: LikeListRelationFilter
-    followers?: FollowsListRelationFilter
     following?: FollowsListRelationFilter
-    notifications?: NotificationListRelationFilter
+    followers?: FollowsListRelationFilter
+    likes?: LikeListRelationFilter
     notificationsCreated?: NotificationListRelationFilter
+    notifications?: NotificationListRelationFilter
+    posts?: PostListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -8545,13 +8545,13 @@ export namespace Prisma {
     website?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    posts?: PostOrderByRelationAggregateInput
     comments?: CommentOrderByRelationAggregateInput
-    likes?: LikeOrderByRelationAggregateInput
-    followers?: FollowsOrderByRelationAggregateInput
     following?: FollowsOrderByRelationAggregateInput
-    notifications?: NotificationOrderByRelationAggregateInput
+    followers?: FollowsOrderByRelationAggregateInput
+    likes?: LikeOrderByRelationAggregateInput
     notificationsCreated?: NotificationOrderByRelationAggregateInput
+    notifications?: NotificationOrderByRelationAggregateInput
+    posts?: PostOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -8569,13 +8569,13 @@ export namespace Prisma {
     website?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    posts?: PostListRelationFilter
     comments?: CommentListRelationFilter
-    likes?: LikeListRelationFilter
-    followers?: FollowsListRelationFilter
     following?: FollowsListRelationFilter
-    notifications?: NotificationListRelationFilter
+    followers?: FollowsListRelationFilter
+    likes?: LikeListRelationFilter
     notificationsCreated?: NotificationListRelationFilter
+    notifications?: NotificationListRelationFilter
+    posts?: PostListRelationFilter
   }, "id" | "email" | "username" | "clerkId">
 
   export type UserOrderByWithAggregationInput = {
@@ -8622,10 +8622,10 @@ export namespace Prisma {
     image?: StringNullableFilter<"Post"> | string | null
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
-    author?: XOR<UserScalarRelationFilter, UserWhereInput>
     comments?: CommentListRelationFilter
     likes?: LikeListRelationFilter
     notifications?: NotificationListRelationFilter
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type PostOrderByWithRelationInput = {
@@ -8635,10 +8635,10 @@ export namespace Prisma {
     image?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    author?: UserOrderByWithRelationInput
     comments?: CommentOrderByRelationAggregateInput
     likes?: LikeOrderByRelationAggregateInput
     notifications?: NotificationOrderByRelationAggregateInput
+    author?: UserOrderByWithRelationInput
   }
 
   export type PostWhereUniqueInput = Prisma.AtLeast<{
@@ -8651,10 +8651,10 @@ export namespace Prisma {
     image?: StringNullableFilter<"Post"> | string | null
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
-    author?: XOR<UserScalarRelationFilter, UserWhereInput>
     comments?: CommentListRelationFilter
     likes?: LikeListRelationFilter
     notifications?: NotificationListRelationFilter
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type PostOrderByWithAggregationInput = {
@@ -8750,8 +8750,8 @@ export namespace Prisma {
     postId?: StringFilter<"Like"> | string
     userId?: StringFilter<"Like"> | string
     createdAt?: DateTimeFilter<"Like"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     post?: XOR<PostScalarRelationFilter, PostWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type LikeOrderByWithRelationInput = {
@@ -8759,8 +8759,8 @@ export namespace Prisma {
     postId?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
-    user?: UserOrderByWithRelationInput
     post?: PostOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type LikeWhereUniqueInput = Prisma.AtLeast<{
@@ -8772,8 +8772,8 @@ export namespace Prisma {
     postId?: StringFilter<"Like"> | string
     userId?: StringFilter<"Like"> | string
     createdAt?: DateTimeFilter<"Like"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     post?: XOR<PostScalarRelationFilter, PostWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId_postId">
 
   export type LikeOrderByWithAggregationInput = {
@@ -8857,10 +8857,10 @@ export namespace Prisma {
     postId?: StringNullableFilter<"Notification"> | string | null
     commentId?: StringNullableFilter<"Notification"> | string | null
     createdAt?: DateTimeFilter<"Notification"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    comment?: XOR<CommentNullableScalarRelationFilter, CommentWhereInput> | null
     creator?: XOR<UserScalarRelationFilter, UserWhereInput>
     post?: XOR<PostNullableScalarRelationFilter, PostWhereInput> | null
-    comment?: XOR<CommentNullableScalarRelationFilter, CommentWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type NotificationOrderByWithRelationInput = {
@@ -8872,10 +8872,10 @@ export namespace Prisma {
     postId?: SortOrderInput | SortOrder
     commentId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    user?: UserOrderByWithRelationInput
+    comment?: CommentOrderByWithRelationInput
     creator?: UserOrderByWithRelationInput
     post?: PostOrderByWithRelationInput
-    comment?: CommentOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type NotificationWhereUniqueInput = Prisma.AtLeast<{
@@ -8890,10 +8890,10 @@ export namespace Prisma {
     postId?: StringNullableFilter<"Notification"> | string | null
     commentId?: StringNullableFilter<"Notification"> | string | null
     createdAt?: DateTimeFilter<"Notification"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    comment?: XOR<CommentNullableScalarRelationFilter, CommentWhereInput> | null
     creator?: XOR<UserScalarRelationFilter, UserWhereInput>
     post?: XOR<PostNullableScalarRelationFilter, PostWhereInput> | null
-    comment?: XOR<CommentNullableScalarRelationFilter, CommentWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type NotificationOrderByWithAggregationInput = {
@@ -8936,13 +8936,13 @@ export namespace Prisma {
     website?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posts?: PostCreateNestedManyWithoutAuthorInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
-    likes?: LikeCreateNestedManyWithoutUserInput
-    followers?: FollowsCreateNestedManyWithoutFollowingInput
     following?: FollowsCreateNestedManyWithoutFollowerInput
-    notifications?: NotificationCreateNestedManyWithoutUserInput
+    followers?: FollowsCreateNestedManyWithoutFollowingInput
+    likes?: LikeCreateNestedManyWithoutUserInput
     notificationsCreated?: NotificationCreateNestedManyWithoutCreatorInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -8957,13 +8957,13 @@ export namespace Prisma {
     website?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
-    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
-    followers?: FollowsUncheckedCreateNestedManyWithoutFollowingInput
     following?: FollowsUncheckedCreateNestedManyWithoutFollowerInput
-    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    followers?: FollowsUncheckedCreateNestedManyWithoutFollowingInput
+    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     notificationsCreated?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUpdateInput = {
@@ -8978,13 +8978,13 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUpdateManyWithoutAuthorNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUpdateManyWithoutUserNestedInput
-    followers?: FollowsUpdateManyWithoutFollowingNestedInput
     following?: FollowsUpdateManyWithoutFollowerNestedInput
-    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    followers?: FollowsUpdateManyWithoutFollowingNestedInput
+    likes?: LikeUpdateManyWithoutUserNestedInput
     notificationsCreated?: NotificationUpdateManyWithoutCreatorNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -8999,13 +8999,13 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
-    followers?: FollowsUncheckedUpdateManyWithoutFollowingNestedInput
     following?: FollowsUncheckedUpdateManyWithoutFollowerNestedInput
-    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    followers?: FollowsUncheckedUpdateManyWithoutFollowingNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     notificationsCreated?: NotificationUncheckedUpdateManyWithoutCreatorNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -9056,10 +9056,10 @@ export namespace Prisma {
     image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    author: UserCreateNestedOneWithoutPostsInput
     comments?: CommentCreateNestedManyWithoutPostInput
     likes?: LikeCreateNestedManyWithoutPostInput
     notifications?: NotificationCreateNestedManyWithoutPostInput
+    author: UserCreateNestedOneWithoutPostsInput
   }
 
   export type PostUncheckedCreateInput = {
@@ -9080,10 +9080,10 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: UserUpdateOneRequiredWithoutPostsNestedInput
     comments?: CommentUpdateManyWithoutPostNestedInput
     likes?: LikeUpdateManyWithoutPostNestedInput
     notifications?: NotificationUpdateManyWithoutPostNestedInput
+    author?: UserUpdateOneRequiredWithoutPostsNestedInput
   }
 
   export type PostUncheckedUpdateInput = {
@@ -9185,8 +9185,8 @@ export namespace Prisma {
   export type LikeCreateInput = {
     id?: string
     createdAt?: Date | string
-    user: UserCreateNestedOneWithoutLikesInput
     post: PostCreateNestedOneWithoutLikesInput
+    user: UserCreateNestedOneWithoutLikesInput
   }
 
   export type LikeUncheckedCreateInput = {
@@ -9199,8 +9199,8 @@ export namespace Prisma {
   export type LikeUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutLikesNestedInput
     post?: PostUpdateOneRequiredWithoutLikesNestedInput
+    user?: UserUpdateOneRequiredWithoutLikesNestedInput
   }
 
   export type LikeUncheckedUpdateInput = {
@@ -9274,10 +9274,10 @@ export namespace Prisma {
     type: $Enums.NotificationType
     read?: boolean
     createdAt?: Date | string
-    user: UserCreateNestedOneWithoutNotificationsInput
+    comment?: CommentCreateNestedOneWithoutNotificationsInput
     creator: UserCreateNestedOneWithoutNotificationsCreatedInput
     post?: PostCreateNestedOneWithoutNotificationsInput
-    comment?: CommentCreateNestedOneWithoutNotificationsInput
+    user: UserCreateNestedOneWithoutNotificationsInput
   }
 
   export type NotificationUncheckedCreateInput = {
@@ -9296,10 +9296,10 @@ export namespace Prisma {
     type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
     read?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutNotificationsNestedInput
+    comment?: CommentUpdateOneWithoutNotificationsNestedInput
     creator?: UserUpdateOneRequiredWithoutNotificationsCreatedNestedInput
     post?: PostUpdateOneWithoutNotificationsNestedInput
-    comment?: CommentUpdateOneWithoutNotificationsNestedInput
+    user?: UserUpdateOneRequiredWithoutNotificationsNestedInput
   }
 
   export type NotificationUncheckedUpdateInput = {
@@ -9383,22 +9383,10 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type PostListRelationFilter = {
-    every?: PostWhereInput
-    some?: PostWhereInput
-    none?: PostWhereInput
-  }
-
   export type CommentListRelationFilter = {
     every?: CommentWhereInput
     some?: CommentWhereInput
     none?: CommentWhereInput
-  }
-
-  export type LikeListRelationFilter = {
-    every?: LikeWhereInput
-    some?: LikeWhereInput
-    none?: LikeWhereInput
   }
 
   export type FollowsListRelationFilter = {
@@ -9407,10 +9395,22 @@ export namespace Prisma {
     none?: FollowsWhereInput
   }
 
+  export type LikeListRelationFilter = {
+    every?: LikeWhereInput
+    some?: LikeWhereInput
+    none?: LikeWhereInput
+  }
+
   export type NotificationListRelationFilter = {
     every?: NotificationWhereInput
     some?: NotificationWhereInput
     none?: NotificationWhereInput
+  }
+
+  export type PostListRelationFilter = {
+    every?: PostWhereInput
+    some?: PostWhereInput
+    none?: PostWhereInput
   }
 
   export type SortOrderInput = {
@@ -9418,15 +9418,7 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type PostOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type CommentOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type LikeOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9434,7 +9426,15 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type LikeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type NotificationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PostOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9652,14 +9652,14 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type PostNullableScalarRelationFilter = {
-    is?: PostWhereInput | null
-    isNot?: PostWhereInput | null
-  }
-
   export type CommentNullableScalarRelationFilter = {
     is?: CommentWhereInput | null
     isNot?: CommentWhereInput | null
+  }
+
+  export type PostNullableScalarRelationFilter = {
+    is?: PostWhereInput | null
+    isNot?: PostWhereInput | null
   }
 
   export type NotificationCountOrderByAggregateInput = {
@@ -9713,32 +9713,11 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type PostCreateNestedManyWithoutAuthorInput = {
-    create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
-    createMany?: PostCreateManyAuthorInputEnvelope
-    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-  }
-
   export type CommentCreateNestedManyWithoutAuthorInput = {
     create?: XOR<CommentCreateWithoutAuthorInput, CommentUncheckedCreateWithoutAuthorInput> | CommentCreateWithoutAuthorInput[] | CommentUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: CommentCreateOrConnectWithoutAuthorInput | CommentCreateOrConnectWithoutAuthorInput[]
     createMany?: CommentCreateManyAuthorInputEnvelope
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
-  }
-
-  export type LikeCreateNestedManyWithoutUserInput = {
-    create?: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput> | LikeCreateWithoutUserInput[] | LikeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutUserInput | LikeCreateOrConnectWithoutUserInput[]
-    createMany?: LikeCreateManyUserInputEnvelope
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-  }
-
-  export type FollowsCreateNestedManyWithoutFollowingInput = {
-    create?: XOR<FollowsCreateWithoutFollowingInput, FollowsUncheckedCreateWithoutFollowingInput> | FollowsCreateWithoutFollowingInput[] | FollowsUncheckedCreateWithoutFollowingInput[]
-    connectOrCreate?: FollowsCreateOrConnectWithoutFollowingInput | FollowsCreateOrConnectWithoutFollowingInput[]
-    createMany?: FollowsCreateManyFollowingInputEnvelope
-    connect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
   }
 
   export type FollowsCreateNestedManyWithoutFollowerInput = {
@@ -9748,11 +9727,18 @@ export namespace Prisma {
     connect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
   }
 
-  export type NotificationCreateNestedManyWithoutUserInput = {
-    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
-    createMany?: NotificationCreateManyUserInputEnvelope
-    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+  export type FollowsCreateNestedManyWithoutFollowingInput = {
+    create?: XOR<FollowsCreateWithoutFollowingInput, FollowsUncheckedCreateWithoutFollowingInput> | FollowsCreateWithoutFollowingInput[] | FollowsUncheckedCreateWithoutFollowingInput[]
+    connectOrCreate?: FollowsCreateOrConnectWithoutFollowingInput | FollowsCreateOrConnectWithoutFollowingInput[]
+    createMany?: FollowsCreateManyFollowingInputEnvelope
+    connect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
+  }
+
+  export type LikeCreateNestedManyWithoutUserInput = {
+    create?: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput> | LikeCreateWithoutUserInput[] | LikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LikeCreateOrConnectWithoutUserInput | LikeCreateOrConnectWithoutUserInput[]
+    createMany?: LikeCreateManyUserInputEnvelope
+    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
   }
 
   export type NotificationCreateNestedManyWithoutCreatorInput = {
@@ -9762,7 +9748,14 @@ export namespace Prisma {
     connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
   }
 
-  export type PostUncheckedCreateNestedManyWithoutAuthorInput = {
+  export type NotificationCreateNestedManyWithoutUserInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+  }
+
+  export type PostCreateNestedManyWithoutAuthorInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
     createMany?: PostCreateManyAuthorInputEnvelope
@@ -9776,11 +9769,11 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
-  export type LikeUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput> | LikeCreateWithoutUserInput[] | LikeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutUserInput | LikeCreateOrConnectWithoutUserInput[]
-    createMany?: LikeCreateManyUserInputEnvelope
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+  export type FollowsUncheckedCreateNestedManyWithoutFollowerInput = {
+    create?: XOR<FollowsCreateWithoutFollowerInput, FollowsUncheckedCreateWithoutFollowerInput> | FollowsCreateWithoutFollowerInput[] | FollowsUncheckedCreateWithoutFollowerInput[]
+    connectOrCreate?: FollowsCreateOrConnectWithoutFollowerInput | FollowsCreateOrConnectWithoutFollowerInput[]
+    createMany?: FollowsCreateManyFollowerInputEnvelope
+    connect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
   }
 
   export type FollowsUncheckedCreateNestedManyWithoutFollowingInput = {
@@ -9790,11 +9783,18 @@ export namespace Prisma {
     connect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
   }
 
-  export type FollowsUncheckedCreateNestedManyWithoutFollowerInput = {
-    create?: XOR<FollowsCreateWithoutFollowerInput, FollowsUncheckedCreateWithoutFollowerInput> | FollowsCreateWithoutFollowerInput[] | FollowsUncheckedCreateWithoutFollowerInput[]
-    connectOrCreate?: FollowsCreateOrConnectWithoutFollowerInput | FollowsCreateOrConnectWithoutFollowerInput[]
-    createMany?: FollowsCreateManyFollowerInputEnvelope
-    connect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
+  export type LikeUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput> | LikeCreateWithoutUserInput[] | LikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LikeCreateOrConnectWithoutUserInput | LikeCreateOrConnectWithoutUserInput[]
+    createMany?: LikeCreateManyUserInputEnvelope
+    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+  }
+
+  export type NotificationUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<NotificationCreateWithoutCreatorInput, NotificationUncheckedCreateWithoutCreatorInput> | NotificationCreateWithoutCreatorInput[] | NotificationUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutCreatorInput | NotificationCreateOrConnectWithoutCreatorInput[]
+    createMany?: NotificationCreateManyCreatorInputEnvelope
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
   }
 
   export type NotificationUncheckedCreateNestedManyWithoutUserInput = {
@@ -9804,11 +9804,11 @@ export namespace Prisma {
     connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
   }
 
-  export type NotificationUncheckedCreateNestedManyWithoutCreatorInput = {
-    create?: XOR<NotificationCreateWithoutCreatorInput, NotificationUncheckedCreateWithoutCreatorInput> | NotificationCreateWithoutCreatorInput[] | NotificationUncheckedCreateWithoutCreatorInput[]
-    connectOrCreate?: NotificationCreateOrConnectWithoutCreatorInput | NotificationCreateOrConnectWithoutCreatorInput[]
-    createMany?: NotificationCreateManyCreatorInputEnvelope
-    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+  export type PostUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
+    createMany?: PostCreateManyAuthorInputEnvelope
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -9821,20 +9821,6 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
-  }
-
-  export type PostUpdateManyWithoutAuthorNestedInput = {
-    create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
-    upsert?: PostUpsertWithWhereUniqueWithoutAuthorInput | PostUpsertWithWhereUniqueWithoutAuthorInput[]
-    createMany?: PostCreateManyAuthorInputEnvelope
-    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    update?: PostUpdateWithWhereUniqueWithoutAuthorInput | PostUpdateWithWhereUniqueWithoutAuthorInput[]
-    updateMany?: PostUpdateManyWithWhereWithoutAuthorInput | PostUpdateManyWithWhereWithoutAuthorInput[]
-    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
   export type CommentUpdateManyWithoutAuthorNestedInput = {
@@ -9851,18 +9837,18 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
-  export type LikeUpdateManyWithoutUserNestedInput = {
-    create?: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput> | LikeCreateWithoutUserInput[] | LikeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutUserInput | LikeCreateOrConnectWithoutUserInput[]
-    upsert?: LikeUpsertWithWhereUniqueWithoutUserInput | LikeUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: LikeCreateManyUserInputEnvelope
-    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    update?: LikeUpdateWithWhereUniqueWithoutUserInput | LikeUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: LikeUpdateManyWithWhereWithoutUserInput | LikeUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
+  export type FollowsUpdateManyWithoutFollowerNestedInput = {
+    create?: XOR<FollowsCreateWithoutFollowerInput, FollowsUncheckedCreateWithoutFollowerInput> | FollowsCreateWithoutFollowerInput[] | FollowsUncheckedCreateWithoutFollowerInput[]
+    connectOrCreate?: FollowsCreateOrConnectWithoutFollowerInput | FollowsCreateOrConnectWithoutFollowerInput[]
+    upsert?: FollowsUpsertWithWhereUniqueWithoutFollowerInput | FollowsUpsertWithWhereUniqueWithoutFollowerInput[]
+    createMany?: FollowsCreateManyFollowerInputEnvelope
+    set?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
+    disconnect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
+    delete?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
+    connect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
+    update?: FollowsUpdateWithWhereUniqueWithoutFollowerInput | FollowsUpdateWithWhereUniqueWithoutFollowerInput[]
+    updateMany?: FollowsUpdateManyWithWhereWithoutFollowerInput | FollowsUpdateManyWithWhereWithoutFollowerInput[]
+    deleteMany?: FollowsScalarWhereInput | FollowsScalarWhereInput[]
   }
 
   export type FollowsUpdateManyWithoutFollowingNestedInput = {
@@ -9879,32 +9865,18 @@ export namespace Prisma {
     deleteMany?: FollowsScalarWhereInput | FollowsScalarWhereInput[]
   }
 
-  export type FollowsUpdateManyWithoutFollowerNestedInput = {
-    create?: XOR<FollowsCreateWithoutFollowerInput, FollowsUncheckedCreateWithoutFollowerInput> | FollowsCreateWithoutFollowerInput[] | FollowsUncheckedCreateWithoutFollowerInput[]
-    connectOrCreate?: FollowsCreateOrConnectWithoutFollowerInput | FollowsCreateOrConnectWithoutFollowerInput[]
-    upsert?: FollowsUpsertWithWhereUniqueWithoutFollowerInput | FollowsUpsertWithWhereUniqueWithoutFollowerInput[]
-    createMany?: FollowsCreateManyFollowerInputEnvelope
-    set?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
-    disconnect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
-    delete?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
-    connect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
-    update?: FollowsUpdateWithWhereUniqueWithoutFollowerInput | FollowsUpdateWithWhereUniqueWithoutFollowerInput[]
-    updateMany?: FollowsUpdateManyWithWhereWithoutFollowerInput | FollowsUpdateManyWithWhereWithoutFollowerInput[]
-    deleteMany?: FollowsScalarWhereInput | FollowsScalarWhereInput[]
-  }
-
-  export type NotificationUpdateManyWithoutUserNestedInput = {
-    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
-    upsert?: NotificationUpsertWithWhereUniqueWithoutUserInput | NotificationUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: NotificationCreateManyUserInputEnvelope
-    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    update?: NotificationUpdateWithWhereUniqueWithoutUserInput | NotificationUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: NotificationUpdateManyWithWhereWithoutUserInput | NotificationUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  export type LikeUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput> | LikeCreateWithoutUserInput[] | LikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LikeCreateOrConnectWithoutUserInput | LikeCreateOrConnectWithoutUserInput[]
+    upsert?: LikeUpsertWithWhereUniqueWithoutUserInput | LikeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LikeCreateManyUserInputEnvelope
+    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    update?: LikeUpdateWithWhereUniqueWithoutUserInput | LikeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LikeUpdateManyWithWhereWithoutUserInput | LikeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
   }
 
   export type NotificationUpdateManyWithoutCreatorNestedInput = {
@@ -9921,7 +9893,21 @@ export namespace Prisma {
     deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
   }
 
-  export type PostUncheckedUpdateManyWithoutAuthorNestedInput = {
+  export type NotificationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    upsert?: NotificationUpsertWithWhereUniqueWithoutUserInput | NotificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    update?: NotificationUpdateWithWhereUniqueWithoutUserInput | NotificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: NotificationUpdateManyWithWhereWithoutUserInput | NotificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  }
+
+  export type PostUpdateManyWithoutAuthorNestedInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
     upsert?: PostUpsertWithWhereUniqueWithoutAuthorInput | PostUpsertWithWhereUniqueWithoutAuthorInput[]
@@ -9949,18 +9935,18 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
-  export type LikeUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput> | LikeCreateWithoutUserInput[] | LikeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutUserInput | LikeCreateOrConnectWithoutUserInput[]
-    upsert?: LikeUpsertWithWhereUniqueWithoutUserInput | LikeUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: LikeCreateManyUserInputEnvelope
-    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    update?: LikeUpdateWithWhereUniqueWithoutUserInput | LikeUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: LikeUpdateManyWithWhereWithoutUserInput | LikeUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
+  export type FollowsUncheckedUpdateManyWithoutFollowerNestedInput = {
+    create?: XOR<FollowsCreateWithoutFollowerInput, FollowsUncheckedCreateWithoutFollowerInput> | FollowsCreateWithoutFollowerInput[] | FollowsUncheckedCreateWithoutFollowerInput[]
+    connectOrCreate?: FollowsCreateOrConnectWithoutFollowerInput | FollowsCreateOrConnectWithoutFollowerInput[]
+    upsert?: FollowsUpsertWithWhereUniqueWithoutFollowerInput | FollowsUpsertWithWhereUniqueWithoutFollowerInput[]
+    createMany?: FollowsCreateManyFollowerInputEnvelope
+    set?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
+    disconnect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
+    delete?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
+    connect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
+    update?: FollowsUpdateWithWhereUniqueWithoutFollowerInput | FollowsUpdateWithWhereUniqueWithoutFollowerInput[]
+    updateMany?: FollowsUpdateManyWithWhereWithoutFollowerInput | FollowsUpdateManyWithWhereWithoutFollowerInput[]
+    deleteMany?: FollowsScalarWhereInput | FollowsScalarWhereInput[]
   }
 
   export type FollowsUncheckedUpdateManyWithoutFollowingNestedInput = {
@@ -9977,32 +9963,18 @@ export namespace Prisma {
     deleteMany?: FollowsScalarWhereInput | FollowsScalarWhereInput[]
   }
 
-  export type FollowsUncheckedUpdateManyWithoutFollowerNestedInput = {
-    create?: XOR<FollowsCreateWithoutFollowerInput, FollowsUncheckedCreateWithoutFollowerInput> | FollowsCreateWithoutFollowerInput[] | FollowsUncheckedCreateWithoutFollowerInput[]
-    connectOrCreate?: FollowsCreateOrConnectWithoutFollowerInput | FollowsCreateOrConnectWithoutFollowerInput[]
-    upsert?: FollowsUpsertWithWhereUniqueWithoutFollowerInput | FollowsUpsertWithWhereUniqueWithoutFollowerInput[]
-    createMany?: FollowsCreateManyFollowerInputEnvelope
-    set?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
-    disconnect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
-    delete?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
-    connect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
-    update?: FollowsUpdateWithWhereUniqueWithoutFollowerInput | FollowsUpdateWithWhereUniqueWithoutFollowerInput[]
-    updateMany?: FollowsUpdateManyWithWhereWithoutFollowerInput | FollowsUpdateManyWithWhereWithoutFollowerInput[]
-    deleteMany?: FollowsScalarWhereInput | FollowsScalarWhereInput[]
-  }
-
-  export type NotificationUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
-    upsert?: NotificationUpsertWithWhereUniqueWithoutUserInput | NotificationUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: NotificationCreateManyUserInputEnvelope
-    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    update?: NotificationUpdateWithWhereUniqueWithoutUserInput | NotificationUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: NotificationUpdateManyWithWhereWithoutUserInput | NotificationUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  export type LikeUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput> | LikeCreateWithoutUserInput[] | LikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LikeCreateOrConnectWithoutUserInput | LikeCreateOrConnectWithoutUserInput[]
+    upsert?: LikeUpsertWithWhereUniqueWithoutUserInput | LikeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LikeCreateManyUserInputEnvelope
+    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    update?: LikeUpdateWithWhereUniqueWithoutUserInput | LikeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LikeUpdateManyWithWhereWithoutUserInput | LikeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
   }
 
   export type NotificationUncheckedUpdateManyWithoutCreatorNestedInput = {
@@ -10019,10 +9991,32 @@ export namespace Prisma {
     deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutPostsInput = {
-    create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPostsInput
-    connect?: UserWhereUniqueInput
+  export type NotificationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    upsert?: NotificationUpsertWithWhereUniqueWithoutUserInput | NotificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    update?: NotificationUpdateWithWhereUniqueWithoutUserInput | NotificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: NotificationUpdateManyWithWhereWithoutUserInput | NotificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  }
+
+  export type PostUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutAuthorInput | PostUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: PostCreateManyAuthorInputEnvelope
+    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    update?: PostUpdateWithWhereUniqueWithoutAuthorInput | PostUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutAuthorInput | PostUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
   export type CommentCreateNestedManyWithoutPostInput = {
@@ -10046,6 +10040,12 @@ export namespace Prisma {
     connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
   }
 
+  export type UserCreateNestedOneWithoutPostsInput = {
+    create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPostsInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type CommentUncheckedCreateNestedManyWithoutPostInput = {
     create?: XOR<CommentCreateWithoutPostInput, CommentUncheckedCreateWithoutPostInput> | CommentCreateWithoutPostInput[] | CommentUncheckedCreateWithoutPostInput[]
     connectOrCreate?: CommentCreateOrConnectWithoutPostInput | CommentCreateOrConnectWithoutPostInput[]
@@ -10065,14 +10065,6 @@ export namespace Prisma {
     connectOrCreate?: NotificationCreateOrConnectWithoutPostInput | NotificationCreateOrConnectWithoutPostInput[]
     createMany?: NotificationCreateManyPostInputEnvelope
     connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-  }
-
-  export type UserUpdateOneRequiredWithoutPostsNestedInput = {
-    create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPostsInput
-    upsert?: UserUpsertWithoutPostsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostsInput, UserUpdateWithoutPostsInput>, UserUncheckedUpdateWithoutPostsInput>
   }
 
   export type CommentUpdateManyWithoutPostNestedInput = {
@@ -10115,6 +10107,14 @@ export namespace Prisma {
     update?: NotificationUpdateWithWhereUniqueWithoutPostInput | NotificationUpdateWithWhereUniqueWithoutPostInput[]
     updateMany?: NotificationUpdateManyWithWhereWithoutPostInput | NotificationUpdateManyWithWhereWithoutPostInput[]
     deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutPostsNestedInput = {
+    create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPostsInput
+    upsert?: UserUpsertWithoutPostsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostsInput, UserUpdateWithoutPostsInput>, UserUncheckedUpdateWithoutPostsInput>
   }
 
   export type CommentUncheckedUpdateManyWithoutPostNestedInput = {
@@ -10229,24 +10229,16 @@ export namespace Prisma {
     deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutLikesInput = {
-    create?: XOR<UserCreateWithoutLikesInput, UserUncheckedCreateWithoutLikesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLikesInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type PostCreateNestedOneWithoutLikesInput = {
     create?: XOR<PostCreateWithoutLikesInput, PostUncheckedCreateWithoutLikesInput>
     connectOrCreate?: PostCreateOrConnectWithoutLikesInput
     connect?: PostWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutLikesNestedInput = {
+  export type UserCreateNestedOneWithoutLikesInput = {
     create?: XOR<UserCreateWithoutLikesInput, UserUncheckedCreateWithoutLikesInput>
     connectOrCreate?: UserCreateOrConnectWithoutLikesInput
-    upsert?: UserUpsertWithoutLikesInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLikesInput, UserUpdateWithoutLikesInput>, UserUncheckedUpdateWithoutLikesInput>
   }
 
   export type PostUpdateOneRequiredWithoutLikesNestedInput = {
@@ -10255,6 +10247,14 @@ export namespace Prisma {
     upsert?: PostUpsertWithoutLikesInput
     connect?: PostWhereUniqueInput
     update?: XOR<XOR<PostUpdateToOneWithWhereWithoutLikesInput, PostUpdateWithoutLikesInput>, PostUncheckedUpdateWithoutLikesInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutLikesNestedInput = {
+    create?: XOR<UserCreateWithoutLikesInput, UserUncheckedCreateWithoutLikesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLikesInput
+    upsert?: UserUpsertWithoutLikesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLikesInput, UserUpdateWithoutLikesInput>, UserUncheckedUpdateWithoutLikesInput>
   }
 
   export type UserCreateNestedOneWithoutFollowingInput = {
@@ -10285,10 +10285,10 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFollowersInput, UserUpdateWithoutFollowersInput>, UserUncheckedUpdateWithoutFollowersInput>
   }
 
-  export type UserCreateNestedOneWithoutNotificationsInput = {
-    create?: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutNotificationsInput
-    connect?: UserWhereUniqueInput
+  export type CommentCreateNestedOneWithoutNotificationsInput = {
+    create?: XOR<CommentCreateWithoutNotificationsInput, CommentUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: CommentCreateOrConnectWithoutNotificationsInput
+    connect?: CommentWhereUniqueInput
   }
 
   export type UserCreateNestedOneWithoutNotificationsCreatedInput = {
@@ -10303,10 +10303,10 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput
   }
 
-  export type CommentCreateNestedOneWithoutNotificationsInput = {
-    create?: XOR<CommentCreateWithoutNotificationsInput, CommentUncheckedCreateWithoutNotificationsInput>
-    connectOrCreate?: CommentCreateOrConnectWithoutNotificationsInput
-    connect?: CommentWhereUniqueInput
+  export type UserCreateNestedOneWithoutNotificationsInput = {
+    create?: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutNotificationsInput
+    connect?: UserWhereUniqueInput
   }
 
   export type EnumNotificationTypeFieldUpdateOperationsInput = {
@@ -10317,12 +10317,14 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type UserUpdateOneRequiredWithoutNotificationsNestedInput = {
-    create?: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutNotificationsInput
-    upsert?: UserUpsertWithoutNotificationsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNotificationsInput, UserUpdateWithoutNotificationsInput>, UserUncheckedUpdateWithoutNotificationsInput>
+  export type CommentUpdateOneWithoutNotificationsNestedInput = {
+    create?: XOR<CommentCreateWithoutNotificationsInput, CommentUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: CommentCreateOrConnectWithoutNotificationsInput
+    upsert?: CommentUpsertWithoutNotificationsInput
+    disconnect?: CommentWhereInput | boolean
+    delete?: CommentWhereInput | boolean
+    connect?: CommentWhereUniqueInput
+    update?: XOR<XOR<CommentUpdateToOneWithWhereWithoutNotificationsInput, CommentUpdateWithoutNotificationsInput>, CommentUncheckedUpdateWithoutNotificationsInput>
   }
 
   export type UserUpdateOneRequiredWithoutNotificationsCreatedNestedInput = {
@@ -10343,14 +10345,12 @@ export namespace Prisma {
     update?: XOR<XOR<PostUpdateToOneWithWhereWithoutNotificationsInput, PostUpdateWithoutNotificationsInput>, PostUncheckedUpdateWithoutNotificationsInput>
   }
 
-  export type CommentUpdateOneWithoutNotificationsNestedInput = {
-    create?: XOR<CommentCreateWithoutNotificationsInput, CommentUncheckedCreateWithoutNotificationsInput>
-    connectOrCreate?: CommentCreateOrConnectWithoutNotificationsInput
-    upsert?: CommentUpsertWithoutNotificationsInput
-    disconnect?: CommentWhereInput | boolean
-    delete?: CommentWhereInput | boolean
-    connect?: CommentWhereUniqueInput
-    update?: XOR<XOR<CommentUpdateToOneWithWhereWithoutNotificationsInput, CommentUpdateWithoutNotificationsInput>, CommentUncheckedUpdateWithoutNotificationsInput>
+  export type UserUpdateOneRequiredWithoutNotificationsNestedInput = {
+    create?: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutNotificationsInput
+    upsert?: UserUpsertWithoutNotificationsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNotificationsInput, UserUpdateWithoutNotificationsInput>, UserUncheckedUpdateWithoutNotificationsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -10492,6 +10492,154 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type CommentCreateWithoutAuthorInput = {
+    id?: string
+    content: string
+    createdAt?: Date | string
+    post: PostCreateNestedOneWithoutCommentsInput
+    notifications?: NotificationCreateNestedManyWithoutCommentInput
+  }
+
+  export type CommentUncheckedCreateWithoutAuthorInput = {
+    id?: string
+    content: string
+    postId: string
+    createdAt?: Date | string
+    notifications?: NotificationUncheckedCreateNestedManyWithoutCommentInput
+  }
+
+  export type CommentCreateOrConnectWithoutAuthorInput = {
+    where: CommentWhereUniqueInput
+    create: XOR<CommentCreateWithoutAuthorInput, CommentUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type CommentCreateManyAuthorInputEnvelope = {
+    data: CommentCreateManyAuthorInput | CommentCreateManyAuthorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FollowsCreateWithoutFollowerInput = {
+    createdAt?: Date | string
+    following: UserCreateNestedOneWithoutFollowersInput
+  }
+
+  export type FollowsUncheckedCreateWithoutFollowerInput = {
+    followingId: string
+    createdAt?: Date | string
+  }
+
+  export type FollowsCreateOrConnectWithoutFollowerInput = {
+    where: FollowsWhereUniqueInput
+    create: XOR<FollowsCreateWithoutFollowerInput, FollowsUncheckedCreateWithoutFollowerInput>
+  }
+
+  export type FollowsCreateManyFollowerInputEnvelope = {
+    data: FollowsCreateManyFollowerInput | FollowsCreateManyFollowerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FollowsCreateWithoutFollowingInput = {
+    createdAt?: Date | string
+    follower: UserCreateNestedOneWithoutFollowingInput
+  }
+
+  export type FollowsUncheckedCreateWithoutFollowingInput = {
+    followerId: string
+    createdAt?: Date | string
+  }
+
+  export type FollowsCreateOrConnectWithoutFollowingInput = {
+    where: FollowsWhereUniqueInput
+    create: XOR<FollowsCreateWithoutFollowingInput, FollowsUncheckedCreateWithoutFollowingInput>
+  }
+
+  export type FollowsCreateManyFollowingInputEnvelope = {
+    data: FollowsCreateManyFollowingInput | FollowsCreateManyFollowingInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LikeCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    post: PostCreateNestedOneWithoutLikesInput
+  }
+
+  export type LikeUncheckedCreateWithoutUserInput = {
+    id?: string
+    postId: string
+    createdAt?: Date | string
+  }
+
+  export type LikeCreateOrConnectWithoutUserInput = {
+    where: LikeWhereUniqueInput
+    create: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput>
+  }
+
+  export type LikeCreateManyUserInputEnvelope = {
+    data: LikeCreateManyUserInput | LikeCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type NotificationCreateWithoutCreatorInput = {
+    id?: string
+    type: $Enums.NotificationType
+    read?: boolean
+    createdAt?: Date | string
+    comment?: CommentCreateNestedOneWithoutNotificationsInput
+    post?: PostCreateNestedOneWithoutNotificationsInput
+    user: UserCreateNestedOneWithoutNotificationsInput
+  }
+
+  export type NotificationUncheckedCreateWithoutCreatorInput = {
+    id?: string
+    userId: string
+    type: $Enums.NotificationType
+    read?: boolean
+    postId?: string | null
+    commentId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationCreateOrConnectWithoutCreatorInput = {
+    where: NotificationWhereUniqueInput
+    create: XOR<NotificationCreateWithoutCreatorInput, NotificationUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type NotificationCreateManyCreatorInputEnvelope = {
+    data: NotificationCreateManyCreatorInput | NotificationCreateManyCreatorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type NotificationCreateWithoutUserInput = {
+    id?: string
+    type: $Enums.NotificationType
+    read?: boolean
+    createdAt?: Date | string
+    comment?: CommentCreateNestedOneWithoutNotificationsInput
+    creator: UserCreateNestedOneWithoutNotificationsCreatedInput
+    post?: PostCreateNestedOneWithoutNotificationsInput
+  }
+
+  export type NotificationUncheckedCreateWithoutUserInput = {
+    id?: string
+    creatorId: string
+    type: $Enums.NotificationType
+    read?: boolean
+    postId?: string | null
+    commentId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationCreateOrConnectWithoutUserInput = {
+    where: NotificationWhereUniqueInput
+    create: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
+  }
+
+  export type NotificationCreateManyUserInputEnvelope = {
+    data: NotificationCreateManyUserInput | NotificationCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PostCreateWithoutAuthorInput = {
     id?: string
     content?: string | null
@@ -10524,182 +10672,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type CommentCreateWithoutAuthorInput = {
-    id?: string
-    content: string
-    createdAt?: Date | string
-    post: PostCreateNestedOneWithoutCommentsInput
-    notifications?: NotificationCreateNestedManyWithoutCommentInput
-  }
-
-  export type CommentUncheckedCreateWithoutAuthorInput = {
-    id?: string
-    content: string
-    postId: string
-    createdAt?: Date | string
-    notifications?: NotificationUncheckedCreateNestedManyWithoutCommentInput
-  }
-
-  export type CommentCreateOrConnectWithoutAuthorInput = {
-    where: CommentWhereUniqueInput
-    create: XOR<CommentCreateWithoutAuthorInput, CommentUncheckedCreateWithoutAuthorInput>
-  }
-
-  export type CommentCreateManyAuthorInputEnvelope = {
-    data: CommentCreateManyAuthorInput | CommentCreateManyAuthorInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type LikeCreateWithoutUserInput = {
-    id?: string
-    createdAt?: Date | string
-    post: PostCreateNestedOneWithoutLikesInput
-  }
-
-  export type LikeUncheckedCreateWithoutUserInput = {
-    id?: string
-    postId: string
-    createdAt?: Date | string
-  }
-
-  export type LikeCreateOrConnectWithoutUserInput = {
-    where: LikeWhereUniqueInput
-    create: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput>
-  }
-
-  export type LikeCreateManyUserInputEnvelope = {
-    data: LikeCreateManyUserInput | LikeCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type FollowsCreateWithoutFollowingInput = {
-    createdAt?: Date | string
-    follower: UserCreateNestedOneWithoutFollowingInput
-  }
-
-  export type FollowsUncheckedCreateWithoutFollowingInput = {
-    followerId: string
-    createdAt?: Date | string
-  }
-
-  export type FollowsCreateOrConnectWithoutFollowingInput = {
-    where: FollowsWhereUniqueInput
-    create: XOR<FollowsCreateWithoutFollowingInput, FollowsUncheckedCreateWithoutFollowingInput>
-  }
-
-  export type FollowsCreateManyFollowingInputEnvelope = {
-    data: FollowsCreateManyFollowingInput | FollowsCreateManyFollowingInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type FollowsCreateWithoutFollowerInput = {
-    createdAt?: Date | string
-    following: UserCreateNestedOneWithoutFollowersInput
-  }
-
-  export type FollowsUncheckedCreateWithoutFollowerInput = {
-    followingId: string
-    createdAt?: Date | string
-  }
-
-  export type FollowsCreateOrConnectWithoutFollowerInput = {
-    where: FollowsWhereUniqueInput
-    create: XOR<FollowsCreateWithoutFollowerInput, FollowsUncheckedCreateWithoutFollowerInput>
-  }
-
-  export type FollowsCreateManyFollowerInputEnvelope = {
-    data: FollowsCreateManyFollowerInput | FollowsCreateManyFollowerInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type NotificationCreateWithoutUserInput = {
-    id?: string
-    type: $Enums.NotificationType
-    read?: boolean
-    createdAt?: Date | string
-    creator: UserCreateNestedOneWithoutNotificationsCreatedInput
-    post?: PostCreateNestedOneWithoutNotificationsInput
-    comment?: CommentCreateNestedOneWithoutNotificationsInput
-  }
-
-  export type NotificationUncheckedCreateWithoutUserInput = {
-    id?: string
-    creatorId: string
-    type: $Enums.NotificationType
-    read?: boolean
-    postId?: string | null
-    commentId?: string | null
-    createdAt?: Date | string
-  }
-
-  export type NotificationCreateOrConnectWithoutUserInput = {
-    where: NotificationWhereUniqueInput
-    create: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
-  }
-
-  export type NotificationCreateManyUserInputEnvelope = {
-    data: NotificationCreateManyUserInput | NotificationCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type NotificationCreateWithoutCreatorInput = {
-    id?: string
-    type: $Enums.NotificationType
-    read?: boolean
-    createdAt?: Date | string
-    user: UserCreateNestedOneWithoutNotificationsInput
-    post?: PostCreateNestedOneWithoutNotificationsInput
-    comment?: CommentCreateNestedOneWithoutNotificationsInput
-  }
-
-  export type NotificationUncheckedCreateWithoutCreatorInput = {
-    id?: string
-    userId: string
-    type: $Enums.NotificationType
-    read?: boolean
-    postId?: string | null
-    commentId?: string | null
-    createdAt?: Date | string
-  }
-
-  export type NotificationCreateOrConnectWithoutCreatorInput = {
-    where: NotificationWhereUniqueInput
-    create: XOR<NotificationCreateWithoutCreatorInput, NotificationUncheckedCreateWithoutCreatorInput>
-  }
-
-  export type NotificationCreateManyCreatorInputEnvelope = {
-    data: NotificationCreateManyCreatorInput | NotificationCreateManyCreatorInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type PostUpsertWithWhereUniqueWithoutAuthorInput = {
-    where: PostWhereUniqueInput
-    update: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
-    create: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput>
-  }
-
-  export type PostUpdateWithWhereUniqueWithoutAuthorInput = {
-    where: PostWhereUniqueInput
-    data: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
-  }
-
-  export type PostUpdateManyWithWhereWithoutAuthorInput = {
-    where: PostScalarWhereInput
-    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyWithoutAuthorInput>
-  }
-
-  export type PostScalarWhereInput = {
-    AND?: PostScalarWhereInput | PostScalarWhereInput[]
-    OR?: PostScalarWhereInput[]
-    NOT?: PostScalarWhereInput | PostScalarWhereInput[]
-    id?: StringFilter<"Post"> | string
-    authorId?: StringFilter<"Post"> | string
-    content?: StringNullableFilter<"Post"> | string | null
-    image?: StringNullableFilter<"Post"> | string | null
-    createdAt?: DateTimeFilter<"Post"> | Date | string
-    updatedAt?: DateTimeFilter<"Post"> | Date | string
-  }
-
   export type CommentUpsertWithWhereUniqueWithoutAuthorInput = {
     where: CommentWhereUniqueInput
     update: XOR<CommentUpdateWithoutAuthorInput, CommentUncheckedUpdateWithoutAuthorInput>
@@ -10725,6 +10697,47 @@ export namespace Prisma {
     authorId?: StringFilter<"Comment"> | string
     postId?: StringFilter<"Comment"> | string
     createdAt?: DateTimeFilter<"Comment"> | Date | string
+  }
+
+  export type FollowsUpsertWithWhereUniqueWithoutFollowerInput = {
+    where: FollowsWhereUniqueInput
+    update: XOR<FollowsUpdateWithoutFollowerInput, FollowsUncheckedUpdateWithoutFollowerInput>
+    create: XOR<FollowsCreateWithoutFollowerInput, FollowsUncheckedCreateWithoutFollowerInput>
+  }
+
+  export type FollowsUpdateWithWhereUniqueWithoutFollowerInput = {
+    where: FollowsWhereUniqueInput
+    data: XOR<FollowsUpdateWithoutFollowerInput, FollowsUncheckedUpdateWithoutFollowerInput>
+  }
+
+  export type FollowsUpdateManyWithWhereWithoutFollowerInput = {
+    where: FollowsScalarWhereInput
+    data: XOR<FollowsUpdateManyMutationInput, FollowsUncheckedUpdateManyWithoutFollowerInput>
+  }
+
+  export type FollowsScalarWhereInput = {
+    AND?: FollowsScalarWhereInput | FollowsScalarWhereInput[]
+    OR?: FollowsScalarWhereInput[]
+    NOT?: FollowsScalarWhereInput | FollowsScalarWhereInput[]
+    followerId?: StringFilter<"Follows"> | string
+    followingId?: StringFilter<"Follows"> | string
+    createdAt?: DateTimeFilter<"Follows"> | Date | string
+  }
+
+  export type FollowsUpsertWithWhereUniqueWithoutFollowingInput = {
+    where: FollowsWhereUniqueInput
+    update: XOR<FollowsUpdateWithoutFollowingInput, FollowsUncheckedUpdateWithoutFollowingInput>
+    create: XOR<FollowsCreateWithoutFollowingInput, FollowsUncheckedCreateWithoutFollowingInput>
+  }
+
+  export type FollowsUpdateWithWhereUniqueWithoutFollowingInput = {
+    where: FollowsWhereUniqueInput
+    data: XOR<FollowsUpdateWithoutFollowingInput, FollowsUncheckedUpdateWithoutFollowingInput>
+  }
+
+  export type FollowsUpdateManyWithWhereWithoutFollowingInput = {
+    where: FollowsScalarWhereInput
+    data: XOR<FollowsUpdateManyMutationInput, FollowsUncheckedUpdateManyWithoutFollowingInput>
   }
 
   export type LikeUpsertWithWhereUniqueWithoutUserInput = {
@@ -10753,45 +10766,34 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Like"> | Date | string
   }
 
-  export type FollowsUpsertWithWhereUniqueWithoutFollowingInput = {
-    where: FollowsWhereUniqueInput
-    update: XOR<FollowsUpdateWithoutFollowingInput, FollowsUncheckedUpdateWithoutFollowingInput>
-    create: XOR<FollowsCreateWithoutFollowingInput, FollowsUncheckedCreateWithoutFollowingInput>
+  export type NotificationUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: NotificationWhereUniqueInput
+    update: XOR<NotificationUpdateWithoutCreatorInput, NotificationUncheckedUpdateWithoutCreatorInput>
+    create: XOR<NotificationCreateWithoutCreatorInput, NotificationUncheckedCreateWithoutCreatorInput>
   }
 
-  export type FollowsUpdateWithWhereUniqueWithoutFollowingInput = {
-    where: FollowsWhereUniqueInput
-    data: XOR<FollowsUpdateWithoutFollowingInput, FollowsUncheckedUpdateWithoutFollowingInput>
+  export type NotificationUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: NotificationWhereUniqueInput
+    data: XOR<NotificationUpdateWithoutCreatorInput, NotificationUncheckedUpdateWithoutCreatorInput>
   }
 
-  export type FollowsUpdateManyWithWhereWithoutFollowingInput = {
-    where: FollowsScalarWhereInput
-    data: XOR<FollowsUpdateManyMutationInput, FollowsUncheckedUpdateManyWithoutFollowingInput>
+  export type NotificationUpdateManyWithWhereWithoutCreatorInput = {
+    where: NotificationScalarWhereInput
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutCreatorInput>
   }
 
-  export type FollowsScalarWhereInput = {
-    AND?: FollowsScalarWhereInput | FollowsScalarWhereInput[]
-    OR?: FollowsScalarWhereInput[]
-    NOT?: FollowsScalarWhereInput | FollowsScalarWhereInput[]
-    followerId?: StringFilter<"Follows"> | string
-    followingId?: StringFilter<"Follows"> | string
-    createdAt?: DateTimeFilter<"Follows"> | Date | string
-  }
-
-  export type FollowsUpsertWithWhereUniqueWithoutFollowerInput = {
-    where: FollowsWhereUniqueInput
-    update: XOR<FollowsUpdateWithoutFollowerInput, FollowsUncheckedUpdateWithoutFollowerInput>
-    create: XOR<FollowsCreateWithoutFollowerInput, FollowsUncheckedCreateWithoutFollowerInput>
-  }
-
-  export type FollowsUpdateWithWhereUniqueWithoutFollowerInput = {
-    where: FollowsWhereUniqueInput
-    data: XOR<FollowsUpdateWithoutFollowerInput, FollowsUncheckedUpdateWithoutFollowerInput>
-  }
-
-  export type FollowsUpdateManyWithWhereWithoutFollowerInput = {
-    where: FollowsScalarWhereInput
-    data: XOR<FollowsUpdateManyMutationInput, FollowsUncheckedUpdateManyWithoutFollowerInput>
+  export type NotificationScalarWhereInput = {
+    AND?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+    OR?: NotificationScalarWhereInput[]
+    NOT?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+    id?: StringFilter<"Notification"> | string
+    userId?: StringFilter<"Notification"> | string
+    creatorId?: StringFilter<"Notification"> | string
+    type?: EnumNotificationTypeFilter<"Notification"> | $Enums.NotificationType
+    read?: BoolFilter<"Notification"> | boolean
+    postId?: StringNullableFilter<"Notification"> | string | null
+    commentId?: StringNullableFilter<"Notification"> | string | null
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
   }
 
   export type NotificationUpsertWithWhereUniqueWithoutUserInput = {
@@ -10810,79 +10812,32 @@ export namespace Prisma {
     data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type NotificationScalarWhereInput = {
-    AND?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
-    OR?: NotificationScalarWhereInput[]
-    NOT?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
-    id?: StringFilter<"Notification"> | string
-    userId?: StringFilter<"Notification"> | string
-    creatorId?: StringFilter<"Notification"> | string
-    type?: EnumNotificationTypeFilter<"Notification"> | $Enums.NotificationType
-    read?: BoolFilter<"Notification"> | boolean
-    postId?: StringNullableFilter<"Notification"> | string | null
-    commentId?: StringNullableFilter<"Notification"> | string | null
-    createdAt?: DateTimeFilter<"Notification"> | Date | string
+  export type PostUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: PostWhereUniqueInput
+    update: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
+    create: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput>
   }
 
-  export type NotificationUpsertWithWhereUniqueWithoutCreatorInput = {
-    where: NotificationWhereUniqueInput
-    update: XOR<NotificationUpdateWithoutCreatorInput, NotificationUncheckedUpdateWithoutCreatorInput>
-    create: XOR<NotificationCreateWithoutCreatorInput, NotificationUncheckedCreateWithoutCreatorInput>
+  export type PostUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: PostWhereUniqueInput
+    data: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
   }
 
-  export type NotificationUpdateWithWhereUniqueWithoutCreatorInput = {
-    where: NotificationWhereUniqueInput
-    data: XOR<NotificationUpdateWithoutCreatorInput, NotificationUncheckedUpdateWithoutCreatorInput>
+  export type PostUpdateManyWithWhereWithoutAuthorInput = {
+    where: PostScalarWhereInput
+    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyWithoutAuthorInput>
   }
 
-  export type NotificationUpdateManyWithWhereWithoutCreatorInput = {
-    where: NotificationScalarWhereInput
-    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutCreatorInput>
-  }
-
-  export type UserCreateWithoutPostsInput = {
-    id?: string
-    email: string
-    username: string
-    clerkId: string
-    name?: string | null
-    bio?: string | null
-    image?: string | null
-    location?: string | null
-    website?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    comments?: CommentCreateNestedManyWithoutAuthorInput
-    likes?: LikeCreateNestedManyWithoutUserInput
-    followers?: FollowsCreateNestedManyWithoutFollowingInput
-    following?: FollowsCreateNestedManyWithoutFollowerInput
-    notifications?: NotificationCreateNestedManyWithoutUserInput
-    notificationsCreated?: NotificationCreateNestedManyWithoutCreatorInput
-  }
-
-  export type UserUncheckedCreateWithoutPostsInput = {
-    id?: string
-    email: string
-    username: string
-    clerkId: string
-    name?: string | null
-    bio?: string | null
-    image?: string | null
-    location?: string | null
-    website?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
-    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
-    followers?: FollowsUncheckedCreateNestedManyWithoutFollowingInput
-    following?: FollowsUncheckedCreateNestedManyWithoutFollowerInput
-    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
-    notificationsCreated?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
-  }
-
-  export type UserCreateOrConnectWithoutPostsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
+  export type PostScalarWhereInput = {
+    AND?: PostScalarWhereInput | PostScalarWhereInput[]
+    OR?: PostScalarWhereInput[]
+    NOT?: PostScalarWhereInput | PostScalarWhereInput[]
+    id?: StringFilter<"Post"> | string
+    authorId?: StringFilter<"Post"> | string
+    content?: StringNullableFilter<"Post"> | string | null
+    image?: StringNullableFilter<"Post"> | string | null
+    createdAt?: DateTimeFilter<"Post"> | Date | string
+    updatedAt?: DateTimeFilter<"Post"> | Date | string
   }
 
   export type CommentCreateWithoutPostInput = {
@@ -10938,9 +10893,9 @@ export namespace Prisma {
     type: $Enums.NotificationType
     read?: boolean
     createdAt?: Date | string
-    user: UserCreateNestedOneWithoutNotificationsInput
-    creator: UserCreateNestedOneWithoutNotificationsCreatedInput
     comment?: CommentCreateNestedOneWithoutNotificationsInput
+    creator: UserCreateNestedOneWithoutNotificationsCreatedInput
+    user: UserCreateNestedOneWithoutNotificationsInput
   }
 
   export type NotificationUncheckedCreateWithoutPostInput = {
@@ -10963,55 +10918,49 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserUpsertWithoutPostsInput = {
-    update: XOR<UserUpdateWithoutPostsInput, UserUncheckedUpdateWithoutPostsInput>
+  export type UserCreateWithoutPostsInput = {
+    id?: string
+    email: string
+    username: string
+    clerkId: string
+    name?: string | null
+    bio?: string | null
+    image?: string | null
+    location?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    following?: FollowsCreateNestedManyWithoutFollowerInput
+    followers?: FollowsCreateNestedManyWithoutFollowingInput
+    likes?: LikeCreateNestedManyWithoutUserInput
+    notificationsCreated?: NotificationCreateNestedManyWithoutCreatorInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPostsInput = {
+    id?: string
+    email: string
+    username: string
+    clerkId: string
+    name?: string | null
+    bio?: string | null
+    image?: string | null
+    location?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    following?: FollowsUncheckedCreateNestedManyWithoutFollowerInput
+    followers?: FollowsUncheckedCreateNestedManyWithoutFollowingInput
+    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
+    notificationsCreated?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPostsInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutPostsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutPostsInput, UserUncheckedUpdateWithoutPostsInput>
-  }
-
-  export type UserUpdateWithoutPostsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    website?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    comments?: CommentUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUpdateManyWithoutUserNestedInput
-    followers?: FollowsUpdateManyWithoutFollowingNestedInput
-    following?: FollowsUpdateManyWithoutFollowerNestedInput
-    notifications?: NotificationUpdateManyWithoutUserNestedInput
-    notificationsCreated?: NotificationUpdateManyWithoutCreatorNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutPostsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    website?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
-    followers?: FollowsUncheckedUpdateManyWithoutFollowingNestedInput
-    following?: FollowsUncheckedUpdateManyWithoutFollowerNestedInput
-    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
-    notificationsCreated?: NotificationUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type CommentUpsertWithWhereUniqueWithoutPostInput = {
@@ -11062,6 +11011,57 @@ export namespace Prisma {
     data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutPostInput>
   }
 
+  export type UserUpsertWithoutPostsInput = {
+    update: XOR<UserUpdateWithoutPostsInput, UserUncheckedUpdateWithoutPostsInput>
+    create: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPostsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPostsInput, UserUncheckedUpdateWithoutPostsInput>
+  }
+
+  export type UserUpdateWithoutPostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    following?: FollowsUpdateManyWithoutFollowerNestedInput
+    followers?: FollowsUpdateManyWithoutFollowingNestedInput
+    likes?: LikeUpdateManyWithoutUserNestedInput
+    notificationsCreated?: NotificationUpdateManyWithoutCreatorNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    following?: FollowsUncheckedUpdateManyWithoutFollowerNestedInput
+    followers?: FollowsUncheckedUpdateManyWithoutFollowingNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
+    notificationsCreated?: NotificationUncheckedUpdateManyWithoutCreatorNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type UserCreateWithoutCommentsInput = {
     id?: string
     email: string
@@ -11074,12 +11074,12 @@ export namespace Prisma {
     website?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posts?: PostCreateNestedManyWithoutAuthorInput
-    likes?: LikeCreateNestedManyWithoutUserInput
-    followers?: FollowsCreateNestedManyWithoutFollowingInput
     following?: FollowsCreateNestedManyWithoutFollowerInput
-    notifications?: NotificationCreateNestedManyWithoutUserInput
+    followers?: FollowsCreateNestedManyWithoutFollowingInput
+    likes?: LikeCreateNestedManyWithoutUserInput
     notificationsCreated?: NotificationCreateNestedManyWithoutCreatorInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
@@ -11094,12 +11094,12 @@ export namespace Prisma {
     website?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
-    followers?: FollowsUncheckedCreateNestedManyWithoutFollowingInput
     following?: FollowsUncheckedCreateNestedManyWithoutFollowerInput
-    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    followers?: FollowsUncheckedCreateNestedManyWithoutFollowingInput
+    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     notificationsCreated?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutCommentsInput = {
@@ -11113,9 +11113,9 @@ export namespace Prisma {
     image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    author: UserCreateNestedOneWithoutPostsInput
     likes?: LikeCreateNestedManyWithoutPostInput
     notifications?: NotificationCreateNestedManyWithoutPostInput
+    author: UserCreateNestedOneWithoutPostsInput
   }
 
   export type PostUncheckedCreateWithoutCommentsInput = {
@@ -11139,9 +11139,9 @@ export namespace Prisma {
     type: $Enums.NotificationType
     read?: boolean
     createdAt?: Date | string
-    user: UserCreateNestedOneWithoutNotificationsInput
     creator: UserCreateNestedOneWithoutNotificationsCreatedInput
     post?: PostCreateNestedOneWithoutNotificationsInput
+    user: UserCreateNestedOneWithoutNotificationsInput
   }
 
   export type NotificationUncheckedCreateWithoutCommentInput = {
@@ -11187,12 +11187,12 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUpdateManyWithoutUserNestedInput
-    followers?: FollowsUpdateManyWithoutFollowingNestedInput
     following?: FollowsUpdateManyWithoutFollowerNestedInput
-    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    followers?: FollowsUpdateManyWithoutFollowingNestedInput
+    likes?: LikeUpdateManyWithoutUserNestedInput
     notificationsCreated?: NotificationUpdateManyWithoutCreatorNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -11207,12 +11207,12 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
-    followers?: FollowsUncheckedUpdateManyWithoutFollowingNestedInput
     following?: FollowsUncheckedUpdateManyWithoutFollowerNestedInput
-    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    followers?: FollowsUncheckedUpdateManyWithoutFollowingNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     notificationsCreated?: NotificationUncheckedUpdateManyWithoutCreatorNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type PostUpsertWithoutCommentsInput = {
@@ -11232,9 +11232,9 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: UserUpdateOneRequiredWithoutPostsNestedInput
     likes?: LikeUpdateManyWithoutPostNestedInput
     notifications?: NotificationUpdateManyWithoutPostNestedInput
+    author?: UserUpdateOneRequiredWithoutPostsNestedInput
   }
 
   export type PostUncheckedUpdateWithoutCommentsInput = {
@@ -11264,60 +11264,15 @@ export namespace Prisma {
     data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutCommentInput>
   }
 
-  export type UserCreateWithoutLikesInput = {
-    id?: string
-    email: string
-    username: string
-    clerkId: string
-    name?: string | null
-    bio?: string | null
-    image?: string | null
-    location?: string | null
-    website?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    posts?: PostCreateNestedManyWithoutAuthorInput
-    comments?: CommentCreateNestedManyWithoutAuthorInput
-    followers?: FollowsCreateNestedManyWithoutFollowingInput
-    following?: FollowsCreateNestedManyWithoutFollowerInput
-    notifications?: NotificationCreateNestedManyWithoutUserInput
-    notificationsCreated?: NotificationCreateNestedManyWithoutCreatorInput
-  }
-
-  export type UserUncheckedCreateWithoutLikesInput = {
-    id?: string
-    email: string
-    username: string
-    clerkId: string
-    name?: string | null
-    bio?: string | null
-    image?: string | null
-    location?: string | null
-    website?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
-    followers?: FollowsUncheckedCreateNestedManyWithoutFollowingInput
-    following?: FollowsUncheckedCreateNestedManyWithoutFollowerInput
-    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
-    notificationsCreated?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
-  }
-
-  export type UserCreateOrConnectWithoutLikesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutLikesInput, UserUncheckedCreateWithoutLikesInput>
-  }
-
   export type PostCreateWithoutLikesInput = {
     id?: string
     content?: string | null
     image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    author: UserCreateNestedOneWithoutPostsInput
     comments?: CommentCreateNestedManyWithoutPostInput
     notifications?: NotificationCreateNestedManyWithoutPostInput
+    author: UserCreateNestedOneWithoutPostsInput
   }
 
   export type PostUncheckedCreateWithoutLikesInput = {
@@ -11334,6 +11289,84 @@ export namespace Prisma {
   export type PostCreateOrConnectWithoutLikesInput = {
     where: PostWhereUniqueInput
     create: XOR<PostCreateWithoutLikesInput, PostUncheckedCreateWithoutLikesInput>
+  }
+
+  export type UserCreateWithoutLikesInput = {
+    id?: string
+    email: string
+    username: string
+    clerkId: string
+    name?: string | null
+    bio?: string | null
+    image?: string | null
+    location?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    following?: FollowsCreateNestedManyWithoutFollowerInput
+    followers?: FollowsCreateNestedManyWithoutFollowingInput
+    notificationsCreated?: NotificationCreateNestedManyWithoutCreatorInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserUncheckedCreateWithoutLikesInput = {
+    id?: string
+    email: string
+    username: string
+    clerkId: string
+    name?: string | null
+    bio?: string | null
+    image?: string | null
+    location?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    following?: FollowsUncheckedCreateNestedManyWithoutFollowerInput
+    followers?: FollowsUncheckedCreateNestedManyWithoutFollowingInput
+    notificationsCreated?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserCreateOrConnectWithoutLikesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLikesInput, UserUncheckedCreateWithoutLikesInput>
+  }
+
+  export type PostUpsertWithoutLikesInput = {
+    update: XOR<PostUpdateWithoutLikesInput, PostUncheckedUpdateWithoutLikesInput>
+    create: XOR<PostCreateWithoutLikesInput, PostUncheckedCreateWithoutLikesInput>
+    where?: PostWhereInput
+  }
+
+  export type PostUpdateToOneWithWhereWithoutLikesInput = {
+    where?: PostWhereInput
+    data: XOR<PostUpdateWithoutLikesInput, PostUncheckedUpdateWithoutLikesInput>
+  }
+
+  export type PostUpdateWithoutLikesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUpdateManyWithoutPostNestedInput
+    notifications?: NotificationUpdateManyWithoutPostNestedInput
+    author?: UserUpdateOneRequiredWithoutPostsNestedInput
+  }
+
+  export type PostUncheckedUpdateWithoutLikesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type UserUpsertWithoutLikesInput = {
@@ -11359,12 +11392,12 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUpdateManyWithoutAuthorNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
-    followers?: FollowsUpdateManyWithoutFollowingNestedInput
     following?: FollowsUpdateManyWithoutFollowerNestedInput
-    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    followers?: FollowsUpdateManyWithoutFollowingNestedInput
     notificationsCreated?: NotificationUpdateManyWithoutCreatorNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLikesInput = {
@@ -11379,45 +11412,12 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
-    followers?: FollowsUncheckedUpdateManyWithoutFollowingNestedInput
     following?: FollowsUncheckedUpdateManyWithoutFollowerNestedInput
-    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    followers?: FollowsUncheckedUpdateManyWithoutFollowingNestedInput
     notificationsCreated?: NotificationUncheckedUpdateManyWithoutCreatorNestedInput
-  }
-
-  export type PostUpsertWithoutLikesInput = {
-    update: XOR<PostUpdateWithoutLikesInput, PostUncheckedUpdateWithoutLikesInput>
-    create: XOR<PostCreateWithoutLikesInput, PostUncheckedCreateWithoutLikesInput>
-    where?: PostWhereInput
-  }
-
-  export type PostUpdateToOneWithWhereWithoutLikesInput = {
-    where?: PostWhereInput
-    data: XOR<PostUpdateWithoutLikesInput, PostUncheckedUpdateWithoutLikesInput>
-  }
-
-  export type PostUpdateWithoutLikesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: UserUpdateOneRequiredWithoutPostsNestedInput
-    comments?: CommentUpdateManyWithoutPostNestedInput
-    notifications?: NotificationUpdateManyWithoutPostNestedInput
-  }
-
-  export type PostUncheckedUpdateWithoutLikesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    authorId?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
-    notifications?: NotificationUncheckedUpdateManyWithoutPostNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateWithoutFollowingInput = {
@@ -11432,12 +11432,12 @@ export namespace Prisma {
     website?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posts?: PostCreateNestedManyWithoutAuthorInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
-    likes?: LikeCreateNestedManyWithoutUserInput
     followers?: FollowsCreateNestedManyWithoutFollowingInput
-    notifications?: NotificationCreateNestedManyWithoutUserInput
+    likes?: LikeCreateNestedManyWithoutUserInput
     notificationsCreated?: NotificationCreateNestedManyWithoutCreatorInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutFollowingInput = {
@@ -11452,12 +11452,12 @@ export namespace Prisma {
     website?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
-    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     followers?: FollowsUncheckedCreateNestedManyWithoutFollowingInput
-    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     notificationsCreated?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutFollowingInput = {
@@ -11477,12 +11477,12 @@ export namespace Prisma {
     website?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posts?: PostCreateNestedManyWithoutAuthorInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
-    likes?: LikeCreateNestedManyWithoutUserInput
     following?: FollowsCreateNestedManyWithoutFollowerInput
-    notifications?: NotificationCreateNestedManyWithoutUserInput
+    likes?: LikeCreateNestedManyWithoutUserInput
     notificationsCreated?: NotificationCreateNestedManyWithoutCreatorInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutFollowersInput = {
@@ -11497,12 +11497,12 @@ export namespace Prisma {
     website?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
-    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     following?: FollowsUncheckedCreateNestedManyWithoutFollowerInput
-    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     notificationsCreated?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutFollowersInput = {
@@ -11533,12 +11533,12 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUpdateManyWithoutAuthorNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUpdateManyWithoutUserNestedInput
     followers?: FollowsUpdateManyWithoutFollowingNestedInput
-    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    likes?: LikeUpdateManyWithoutUserNestedInput
     notificationsCreated?: NotificationUpdateManyWithoutCreatorNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFollowingInput = {
@@ -11553,12 +11553,12 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     followers?: FollowsUncheckedUpdateManyWithoutFollowingNestedInput
-    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     notificationsCreated?: NotificationUncheckedUpdateManyWithoutCreatorNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUpsertWithoutFollowersInput = {
@@ -11584,12 +11584,12 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUpdateManyWithoutAuthorNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUpdateManyWithoutUserNestedInput
     following?: FollowsUpdateManyWithoutFollowerNestedInput
-    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    likes?: LikeUpdateManyWithoutUserNestedInput
     notificationsCreated?: NotificationUpdateManyWithoutCreatorNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFollowersInput = {
@@ -11604,129 +11604,12 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     following?: FollowsUncheckedUpdateManyWithoutFollowerNestedInput
-    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     notificationsCreated?: NotificationUncheckedUpdateManyWithoutCreatorNestedInput
-  }
-
-  export type UserCreateWithoutNotificationsInput = {
-    id?: string
-    email: string
-    username: string
-    clerkId: string
-    name?: string | null
-    bio?: string | null
-    image?: string | null
-    location?: string | null
-    website?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    posts?: PostCreateNestedManyWithoutAuthorInput
-    comments?: CommentCreateNestedManyWithoutAuthorInput
-    likes?: LikeCreateNestedManyWithoutUserInput
-    followers?: FollowsCreateNestedManyWithoutFollowingInput
-    following?: FollowsCreateNestedManyWithoutFollowerInput
-    notificationsCreated?: NotificationCreateNestedManyWithoutCreatorInput
-  }
-
-  export type UserUncheckedCreateWithoutNotificationsInput = {
-    id?: string
-    email: string
-    username: string
-    clerkId: string
-    name?: string | null
-    bio?: string | null
-    image?: string | null
-    location?: string | null
-    website?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
-    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
-    followers?: FollowsUncheckedCreateNestedManyWithoutFollowingInput
-    following?: FollowsUncheckedCreateNestedManyWithoutFollowerInput
-    notificationsCreated?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
-  }
-
-  export type UserCreateOrConnectWithoutNotificationsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
-  }
-
-  export type UserCreateWithoutNotificationsCreatedInput = {
-    id?: string
-    email: string
-    username: string
-    clerkId: string
-    name?: string | null
-    bio?: string | null
-    image?: string | null
-    location?: string | null
-    website?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    posts?: PostCreateNestedManyWithoutAuthorInput
-    comments?: CommentCreateNestedManyWithoutAuthorInput
-    likes?: LikeCreateNestedManyWithoutUserInput
-    followers?: FollowsCreateNestedManyWithoutFollowingInput
-    following?: FollowsCreateNestedManyWithoutFollowerInput
-    notifications?: NotificationCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutNotificationsCreatedInput = {
-    id?: string
-    email: string
-    username: string
-    clerkId: string
-    name?: string | null
-    bio?: string | null
-    image?: string | null
-    location?: string | null
-    website?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
-    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
-    followers?: FollowsUncheckedCreateNestedManyWithoutFollowingInput
-    following?: FollowsUncheckedCreateNestedManyWithoutFollowerInput
-    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutNotificationsCreatedInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutNotificationsCreatedInput, UserUncheckedCreateWithoutNotificationsCreatedInput>
-  }
-
-  export type PostCreateWithoutNotificationsInput = {
-    id?: string
-    content?: string | null
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    author: UserCreateNestedOneWithoutPostsInput
-    comments?: CommentCreateNestedManyWithoutPostInput
-    likes?: LikeCreateNestedManyWithoutPostInput
-  }
-
-  export type PostUncheckedCreateWithoutNotificationsInput = {
-    id?: string
-    authorId: string
-    content?: string | null
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    comments?: CommentUncheckedCreateNestedManyWithoutPostInput
-    likes?: LikeUncheckedCreateNestedManyWithoutPostInput
-  }
-
-  export type PostCreateOrConnectWithoutNotificationsInput = {
-    where: PostWhereUniqueInput
-    create: XOR<PostCreateWithoutNotificationsInput, PostUncheckedCreateWithoutNotificationsInput>
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type CommentCreateWithoutNotificationsInput = {
@@ -11750,139 +11633,121 @@ export namespace Prisma {
     create: XOR<CommentCreateWithoutNotificationsInput, CommentUncheckedCreateWithoutNotificationsInput>
   }
 
-  export type UserUpsertWithoutNotificationsInput = {
-    update: XOR<UserUpdateWithoutNotificationsInput, UserUncheckedUpdateWithoutNotificationsInput>
-    create: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
-    where?: UserWhereInput
+  export type UserCreateWithoutNotificationsCreatedInput = {
+    id?: string
+    email: string
+    username: string
+    clerkId: string
+    name?: string | null
+    bio?: string | null
+    image?: string | null
+    location?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    following?: FollowsCreateNestedManyWithoutFollowerInput
+    followers?: FollowsCreateNestedManyWithoutFollowingInput
+    likes?: LikeCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutAuthorInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutNotificationsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutNotificationsInput, UserUncheckedUpdateWithoutNotificationsInput>
+  export type UserUncheckedCreateWithoutNotificationsCreatedInput = {
+    id?: string
+    email: string
+    username: string
+    clerkId: string
+    name?: string | null
+    bio?: string | null
+    image?: string | null
+    location?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    following?: FollowsUncheckedCreateNestedManyWithoutFollowerInput
+    followers?: FollowsUncheckedCreateNestedManyWithoutFollowingInput
+    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
   }
 
-  export type UserUpdateWithoutNotificationsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    website?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUpdateManyWithoutAuthorNestedInput
-    comments?: CommentUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUpdateManyWithoutUserNestedInput
-    followers?: FollowsUpdateManyWithoutFollowingNestedInput
-    following?: FollowsUpdateManyWithoutFollowerNestedInput
-    notificationsCreated?: NotificationUpdateManyWithoutCreatorNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutNotificationsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    website?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
-    followers?: FollowsUncheckedUpdateManyWithoutFollowingNestedInput
-    following?: FollowsUncheckedUpdateManyWithoutFollowerNestedInput
-    notificationsCreated?: NotificationUncheckedUpdateManyWithoutCreatorNestedInput
-  }
-
-  export type UserUpsertWithoutNotificationsCreatedInput = {
-    update: XOR<UserUpdateWithoutNotificationsCreatedInput, UserUncheckedUpdateWithoutNotificationsCreatedInput>
+  export type UserCreateOrConnectWithoutNotificationsCreatedInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutNotificationsCreatedInput, UserUncheckedCreateWithoutNotificationsCreatedInput>
-    where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutNotificationsCreatedInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutNotificationsCreatedInput, UserUncheckedUpdateWithoutNotificationsCreatedInput>
+  export type PostCreateWithoutNotificationsInput = {
+    id?: string
+    content?: string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: CommentCreateNestedManyWithoutPostInput
+    likes?: LikeCreateNestedManyWithoutPostInput
+    author: UserCreateNestedOneWithoutPostsInput
   }
 
-  export type UserUpdateWithoutNotificationsCreatedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    website?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUpdateManyWithoutAuthorNestedInput
-    comments?: CommentUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUpdateManyWithoutUserNestedInput
-    followers?: FollowsUpdateManyWithoutFollowingNestedInput
-    following?: FollowsUpdateManyWithoutFollowerNestedInput
-    notifications?: NotificationUpdateManyWithoutUserNestedInput
+  export type PostUncheckedCreateWithoutNotificationsInput = {
+    id?: string
+    authorId: string
+    content?: string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: CommentUncheckedCreateNestedManyWithoutPostInput
+    likes?: LikeUncheckedCreateNestedManyWithoutPostInput
   }
 
-  export type UserUncheckedUpdateWithoutNotificationsCreatedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    website?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
-    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
-    followers?: FollowsUncheckedUpdateManyWithoutFollowingNestedInput
-    following?: FollowsUncheckedUpdateManyWithoutFollowerNestedInput
-    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type PostUpsertWithoutNotificationsInput = {
-    update: XOR<PostUpdateWithoutNotificationsInput, PostUncheckedUpdateWithoutNotificationsInput>
+  export type PostCreateOrConnectWithoutNotificationsInput = {
+    where: PostWhereUniqueInput
     create: XOR<PostCreateWithoutNotificationsInput, PostUncheckedCreateWithoutNotificationsInput>
-    where?: PostWhereInput
   }
 
-  export type PostUpdateToOneWithWhereWithoutNotificationsInput = {
-    where?: PostWhereInput
-    data: XOR<PostUpdateWithoutNotificationsInput, PostUncheckedUpdateWithoutNotificationsInput>
+  export type UserCreateWithoutNotificationsInput = {
+    id?: string
+    email: string
+    username: string
+    clerkId: string
+    name?: string | null
+    bio?: string | null
+    image?: string | null
+    location?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    following?: FollowsCreateNestedManyWithoutFollowerInput
+    followers?: FollowsCreateNestedManyWithoutFollowingInput
+    likes?: LikeCreateNestedManyWithoutUserInput
+    notificationsCreated?: NotificationCreateNestedManyWithoutCreatorInput
+    posts?: PostCreateNestedManyWithoutAuthorInput
   }
 
-  export type PostUpdateWithoutNotificationsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: UserUpdateOneRequiredWithoutPostsNestedInput
-    comments?: CommentUpdateManyWithoutPostNestedInput
-    likes?: LikeUpdateManyWithoutPostNestedInput
+  export type UserUncheckedCreateWithoutNotificationsInput = {
+    id?: string
+    email: string
+    username: string
+    clerkId: string
+    name?: string | null
+    bio?: string | null
+    image?: string | null
+    location?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    following?: FollowsUncheckedCreateNestedManyWithoutFollowerInput
+    followers?: FollowsUncheckedCreateNestedManyWithoutFollowingInput
+    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
+    notificationsCreated?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
   }
 
-  export type PostUncheckedUpdateWithoutNotificationsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    authorId?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
-    likes?: LikeUncheckedUpdateManyWithoutPostNestedInput
+  export type UserCreateOrConnectWithoutNotificationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
   }
 
   export type CommentUpsertWithoutNotificationsInput = {
@@ -11912,12 +11777,139 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PostCreateManyAuthorInput = {
-    id?: string
-    content?: string | null
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+  export type UserUpsertWithoutNotificationsCreatedInput = {
+    update: XOR<UserUpdateWithoutNotificationsCreatedInput, UserUncheckedUpdateWithoutNotificationsCreatedInput>
+    create: XOR<UserCreateWithoutNotificationsCreatedInput, UserUncheckedCreateWithoutNotificationsCreatedInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutNotificationsCreatedInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutNotificationsCreatedInput, UserUncheckedUpdateWithoutNotificationsCreatedInput>
+  }
+
+  export type UserUpdateWithoutNotificationsCreatedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    following?: FollowsUpdateManyWithoutFollowerNestedInput
+    followers?: FollowsUpdateManyWithoutFollowingNestedInput
+    likes?: LikeUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutNotificationsCreatedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    following?: FollowsUncheckedUpdateManyWithoutFollowerNestedInput
+    followers?: FollowsUncheckedUpdateManyWithoutFollowingNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type PostUpsertWithoutNotificationsInput = {
+    update: XOR<PostUpdateWithoutNotificationsInput, PostUncheckedUpdateWithoutNotificationsInput>
+    create: XOR<PostCreateWithoutNotificationsInput, PostUncheckedCreateWithoutNotificationsInput>
+    where?: PostWhereInput
+  }
+
+  export type PostUpdateToOneWithWhereWithoutNotificationsInput = {
+    where?: PostWhereInput
+    data: XOR<PostUpdateWithoutNotificationsInput, PostUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type PostUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUpdateManyWithoutPostNestedInput
+    likes?: LikeUpdateManyWithoutPostNestedInput
+    author?: UserUpdateOneRequiredWithoutPostsNestedInput
+  }
+
+  export type PostUncheckedUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutPostNestedInput
+  }
+
+  export type UserUpsertWithoutNotificationsInput = {
+    update: XOR<UserUpdateWithoutNotificationsInput, UserUncheckedUpdateWithoutNotificationsInput>
+    create: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutNotificationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutNotificationsInput, UserUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type UserUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    following?: FollowsUpdateManyWithoutFollowerNestedInput
+    followers?: FollowsUpdateManyWithoutFollowingNestedInput
+    likes?: LikeUpdateManyWithoutUserNestedInput
+    notificationsCreated?: NotificationUpdateManyWithoutCreatorNestedInput
+    posts?: PostUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    following?: FollowsUncheckedUpdateManyWithoutFollowerNestedInput
+    followers?: FollowsUncheckedUpdateManyWithoutFollowingNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
+    notificationsCreated?: NotificationUncheckedUpdateManyWithoutCreatorNestedInput
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type CommentCreateManyAuthorInput = {
@@ -11927,9 +11919,8 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
-  export type LikeCreateManyUserInput = {
-    id?: string
-    postId: string
+  export type FollowsCreateManyFollowerInput = {
+    followingId: string
     createdAt?: Date | string
   }
 
@@ -11938,8 +11929,19 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
-  export type FollowsCreateManyFollowerInput = {
-    followingId: string
+  export type LikeCreateManyUserInput = {
+    id?: string
+    postId: string
+    createdAt?: Date | string
+  }
+
+  export type NotificationCreateManyCreatorInput = {
+    id?: string
+    userId: string
+    type: $Enums.NotificationType
+    read?: boolean
+    postId?: string | null
+    commentId?: string | null
     createdAt?: Date | string
   }
 
@@ -11953,14 +11955,143 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
-  export type NotificationCreateManyCreatorInput = {
+  export type PostCreateManyAuthorInput = {
     id?: string
-    userId: string
-    type: $Enums.NotificationType
-    read?: boolean
-    postId?: string | null
-    commentId?: string | null
+    content?: string | null
+    image?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommentUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    post?: PostUpdateOneRequiredWithoutCommentsNestedInput
+    notifications?: NotificationUpdateManyWithoutCommentNestedInput
+  }
+
+  export type CommentUncheckedUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    postId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notifications?: NotificationUncheckedUpdateManyWithoutCommentNestedInput
+  }
+
+  export type CommentUncheckedUpdateManyWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    postId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowsUpdateWithoutFollowerInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    following?: UserUpdateOneRequiredWithoutFollowersNestedInput
+  }
+
+  export type FollowsUncheckedUpdateWithoutFollowerInput = {
+    followingId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowsUncheckedUpdateManyWithoutFollowerInput = {
+    followingId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowsUpdateWithoutFollowingInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    follower?: UserUpdateOneRequiredWithoutFollowingNestedInput
+  }
+
+  export type FollowsUncheckedUpdateWithoutFollowingInput = {
+    followerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowsUncheckedUpdateManyWithoutFollowingInput = {
+    followerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LikeUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    post?: PostUpdateOneRequiredWithoutLikesNestedInput
+  }
+
+  export type LikeUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    postId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LikeUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    postId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    read?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: CommentUpdateOneWithoutNotificationsNestedInput
+    post?: PostUpdateOneWithoutNotificationsNestedInput
+    user?: UserUpdateOneRequiredWithoutNotificationsNestedInput
+  }
+
+  export type NotificationUncheckedUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    read?: BoolFieldUpdateOperationsInput | boolean
+    postId?: NullableStringFieldUpdateOperationsInput | string | null
+    commentId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateManyWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    read?: BoolFieldUpdateOperationsInput | boolean
+    postId?: NullableStringFieldUpdateOperationsInput | string | null
+    commentId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    read?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: CommentUpdateOneWithoutNotificationsNestedInput
+    creator?: UserUpdateOneRequiredWithoutNotificationsCreatedNestedInput
+    post?: PostUpdateOneWithoutNotificationsNestedInput
+  }
+
+  export type NotificationUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    read?: BoolFieldUpdateOperationsInput | boolean
+    postId?: NullableStringFieldUpdateOperationsInput | string | null
+    commentId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    read?: BoolFieldUpdateOperationsInput | boolean
+    postId?: NullableStringFieldUpdateOperationsInput | string | null
+    commentId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostUpdateWithoutAuthorInput = {
@@ -11991,137 +12122,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CommentUpdateWithoutAuthorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    post?: PostUpdateOneRequiredWithoutCommentsNestedInput
-    notifications?: NotificationUpdateManyWithoutCommentNestedInput
-  }
-
-  export type CommentUncheckedUpdateWithoutAuthorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    postId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    notifications?: NotificationUncheckedUpdateManyWithoutCommentNestedInput
-  }
-
-  export type CommentUncheckedUpdateManyWithoutAuthorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    postId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LikeUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    post?: PostUpdateOneRequiredWithoutLikesNestedInput
-  }
-
-  export type LikeUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    postId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LikeUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    postId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type FollowsUpdateWithoutFollowingInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    follower?: UserUpdateOneRequiredWithoutFollowingNestedInput
-  }
-
-  export type FollowsUncheckedUpdateWithoutFollowingInput = {
-    followerId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type FollowsUncheckedUpdateManyWithoutFollowingInput = {
-    followerId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type FollowsUpdateWithoutFollowerInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    following?: UserUpdateOneRequiredWithoutFollowersNestedInput
-  }
-
-  export type FollowsUncheckedUpdateWithoutFollowerInput = {
-    followingId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type FollowsUncheckedUpdateManyWithoutFollowerInput = {
-    followingId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type NotificationUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
-    read?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    creator?: UserUpdateOneRequiredWithoutNotificationsCreatedNestedInput
-    post?: PostUpdateOneWithoutNotificationsNestedInput
-    comment?: CommentUpdateOneWithoutNotificationsNestedInput
-  }
-
-  export type NotificationUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    creatorId?: StringFieldUpdateOperationsInput | string
-    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
-    read?: BoolFieldUpdateOperationsInput | boolean
-    postId?: NullableStringFieldUpdateOperationsInput | string | null
-    commentId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type NotificationUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    creatorId?: StringFieldUpdateOperationsInput | string
-    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
-    read?: BoolFieldUpdateOperationsInput | boolean
-    postId?: NullableStringFieldUpdateOperationsInput | string | null
-    commentId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type NotificationUpdateWithoutCreatorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
-    read?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutNotificationsNestedInput
-    post?: PostUpdateOneWithoutNotificationsNestedInput
-    comment?: CommentUpdateOneWithoutNotificationsNestedInput
-  }
-
-  export type NotificationUncheckedUpdateWithoutCreatorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
-    read?: BoolFieldUpdateOperationsInput | boolean
-    postId?: NullableStringFieldUpdateOperationsInput | string | null
-    commentId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type NotificationUncheckedUpdateManyWithoutCreatorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
-    read?: BoolFieldUpdateOperationsInput | boolean
-    postId?: NullableStringFieldUpdateOperationsInput | string | null
-    commentId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CommentCreateManyPostInput = {
@@ -12193,9 +12193,9 @@ export namespace Prisma {
     type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
     read?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutNotificationsNestedInput
-    creator?: UserUpdateOneRequiredWithoutNotificationsCreatedNestedInput
     comment?: CommentUpdateOneWithoutNotificationsNestedInput
+    creator?: UserUpdateOneRequiredWithoutNotificationsCreatedNestedInput
+    user?: UserUpdateOneRequiredWithoutNotificationsNestedInput
   }
 
   export type NotificationUncheckedUpdateWithoutPostInput = {
@@ -12233,9 +12233,9 @@ export namespace Prisma {
     type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
     read?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutNotificationsNestedInput
     creator?: UserUpdateOneRequiredWithoutNotificationsCreatedNestedInput
     post?: PostUpdateOneWithoutNotificationsNestedInput
+    user?: UserUpdateOneRequiredWithoutNotificationsNestedInput
   }
 
   export type NotificationUncheckedUpdateWithoutCommentInput = {
