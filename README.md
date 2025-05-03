@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Socially
 
-## Getting Started
+Welcome to **Socially**, a modern and feature-rich social media application built with [Next.js](https://nextjs.org). Socially is designed to provide a seamless and interactive user experience, enabling users to connect, share, and engage in a clean and responsive interface.
 
-First, run the development server:
+**Live Demo**: [https://apk-socially.vercel.app/](https://apk-socially.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **User Authentication**: Secure and seamless login and registration powered by [Clerk](https://clerk.dev).
+- **Post Creation**: Share your thoughts with text and images.
+- **Likes and Comments**: Engage with posts by liking and commenting.
+- **Real-Time Updates**: Dynamic updates for posts, likes, and comments.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Dark Mode**: Built-in theme switching with light and dark modes.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Technologies Used
 
-To learn more about Next.js, take a look at the following resources:
+- **Frontend**: [Next.js](https://nextjs.org), [React](https://reactjs.org), [Tailwind CSS](https://tailwindcss.com)
+- **Backend**: [Prisma](https://www.prisma.io) ORM with PostgreSQL
+- **Authentication**: [Clerk](https://clerk.dev)
+- **State Management**: React hooks and context
+- **UI Components**: Radix UI and custom components
+- **Notifications**: Real-time toast notifications with [react-hot-toast](https://react-hot-toast.com)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Getting Started
 
-## Deploy on Vercel
+Follow these steps to set up and run the project locally:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prerequisites
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Node.js 18 or higher
+- PostgreSQL database
+- Environment variables configured in a `.env` file (see `.env.example` for reference)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/socially.git
+   cd socially
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up the database:
+   ```bash
+   npx prisma migrate dev
+   ```
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 📂 Project Structure
+
+- **`src/actions`**: Server-side actions for handling posts, likes, and comments.
+- **`src/components`**: Reusable UI components like `PostCard`, `CreatePost`, and more.
+- **`src/generated`**: Auto-generated Prisma client and schema files.
+- **`src/app`**: Application entry point and global styles.
+
+---
+
+## 📚 Learn More
+
+To learn more about the tools and frameworks used in this project, check out the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Prisma Documentation](https://www.prisma.io/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+
+---
+
+## 🌍 Deploy on Vercel
+
+The easiest way to deploy Socially is to use the [Vercel Platform](https://vercel.com). Follow the [Next.js deployment guide](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! If you'd like to contribute to Socially, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add a meaningful commit message"
+   ```
+4. Push to your branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Open a pull request.
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+---
+
+Created with ❤️ by Ali Salehi.
